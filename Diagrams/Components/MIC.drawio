@@ -1,0 +1,43 @@
+<mxfile host="Electron" modified="2023-11-18T18:26:18.935Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.2 Chrome/114.0.5735.289 Electron/25.9.4 Safari/537.36" etag="k1MUkcOVh9trF23ajE3G" version="22.1.2" type="device">
+  <diagram name="Page-1" id="B4-T2lnPi27rJ8sC0lkb">
+    <mxGraphModel dx="1098" dy="868" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pK-gvSuuAhV06_ISppLQ-30" value="&lt;font size=&quot;1&quot; style=&quot;&quot;&gt;&lt;b style=&quot;font-size: 25px;&quot;&gt;MIC&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=4;" vertex="1" parent="1">
+          <mxGeometry x="240" y="160" width="240" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="pK-gvSuuAhV06_ISppLQ-31" value="" style="endArrow=block;html=1;strokeWidth=2;endFill=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="319" as="sourcePoint" />
+            <mxPoint x="640" y="319" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pK-gvSuuAhV06_ISppLQ-32" value="" style="endArrow=none;html=1;strokeWidth=2;endFill=0;rounded=0;startArrow=block;startFill=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="240" as="sourcePoint" />
+            <mxPoint x="640" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pK-gvSuuAhV06_ISppLQ-33" value="&lt;font size=&quot;1&quot; style=&quot;&quot;&gt;&lt;b style=&quot;font-size: 18px;&quot;&gt;CLK&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="510" y="210" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pK-gvSuuAhV06_ISppLQ-34" value="&lt;font size=&quot;1&quot; style=&quot;&quot;&gt;&lt;b style=&quot;font-size: 18px;&quot;&gt;DATA&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="510" y="279" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pK-gvSuuAhV06_ISppLQ-35" value="" style="triangle;whiteSpace=wrap;html=1;strokeWidth=4;direction=west;" vertex="1" parent="1">
+          <mxGeometry x="460" y="228" width="20" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="pK-gvSuuAhV06_ISppLQ-44" value="" style="endArrow=none;html=1;strokeWidth=2;endFill=0;rounded=0;startArrow=block;startFill=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="400" as="sourcePoint" />
+            <mxPoint x="640" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pK-gvSuuAhV06_ISppLQ-45" value="&lt;font size=&quot;1&quot; style=&quot;&quot;&gt;&lt;b style=&quot;font-size: 18px;&quot;&gt;L/R_SEL&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="510" y="360" width="90" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
