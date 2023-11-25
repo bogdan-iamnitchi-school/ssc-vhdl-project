@@ -13,6 +13,5 @@ bogdan@VivoBook:~$ ll /dev/serial/by-id
 total 0
 drwxr-xr-x 2 root root 80 Nov 25 10:29 ./
 drwxr-xr-x 4 root root 80 Nov 25 10:29 ../
-lrwxrwxrwx 1 root root 13 Nov 25 10:29 usb-Digilent_Digilent_USB_Device_210292A3FCE3-if00-port0 -> ../../ttyUSB0
 lrwxrwxrwx 1 root root 13 Nov 25 10:29 usb-Digilent_Digilent_USB_Device_210292A3FCE3-if01-port0 -> ../../ttyUSB1
 ```
