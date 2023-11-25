@@ -17,6 +17,14 @@ lrwxrwxrwx 1 root root 13 Nov 25 10:29 usb-Digilent_Digilent_USB_Device_210292A3
 ```
 
 To test the UART transmision for bluetooth devices:
-- Find device mac using: `bluetoothctl scan on`
-- After that bind the device to rfcomm: `rfcomm bind /dev/rfcomm0 11:22:33:44:55:66`
-- Finnaly you have to link the rfcomm to a serial port: `sudo ln -s  /dev/rfcomm0 /dev/ttyUSB0`
+- Find device mac using:
+
+  `bluetoothctl scan on`
+  
+- After that bind the device to rfcomm:
+
+  `rfcomm bind /dev/rfcomm0 11:22:33:44:55:66`
+  
+- Finnaly you have to link the rfcomm to a serial port:
+
+  `sudo ln -s  /dev/rfcomm0 /dev/ttyUSB0`
