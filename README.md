@@ -5,6 +5,7 @@ This is a Uni project made in VHDL using onboard DDR2 memory to sotre the recore
 ### UART USB transmision
 
 To test the UART USB transmision  you can:
+
   - First run this comand in your terminal:
   
   ```ll /dev/serial/by-id```
