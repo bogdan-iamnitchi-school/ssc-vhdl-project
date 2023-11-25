@@ -25,6 +25,16 @@ To test the UART transmision for bluetooth devices:
 
   `rfcomm bind /dev/rfcomm0 11:22:33:44:55:66`
   
-- Finnaly you have to link the rfcomm to a serial port:
+- Optional you can link the rfcomm to a serial port:
 
   `sudo ln -s  /dev/rfcomm0 /dev/ttyUSB0`
+  
+- Setup `minicom` or `putty` to connect to your serial port:
+  ```
+  Start bits: 1,
+  BAUD_RATE = 9600,
+  Data bits: 8,
+  Parity: None
+  Stop bits: 1
+  Flow contole: None
+  ```
