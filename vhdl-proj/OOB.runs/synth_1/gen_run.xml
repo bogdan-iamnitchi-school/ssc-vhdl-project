@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1700931395" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/Nexys4DdrUserDemo.dcp">
+  <File Type="VDS-TIMINGSUMMARY" Name="Nexys4DdrUserDemo_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="Nexys4DdrUserDemo.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="Nexys4DdrUserDemo_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="Nexys4DdrUserDemo_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="Nexys4DdrUserDemo_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="Nexys4DdrUserDemo.vds"/>
+  <File Type="REPORTS-TCL" Name="Nexys4DdrUserDemo_reports.tcl"/>
+  <File Type="VDS-TIMING-PB" Name="Nexys4DdrUserDemo_timing_summary_synth.pb"/>
+  <File Type="PA-TCL" Name="Nexys4DdrUserDemo.tcl"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/../Nexys-4-DDR-OOB/src/ip/ddr/ddr.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../Nexys-4-DDR-OOB/src/ip/ClkGen/ClkGen.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../Nexys-4-DDR-OOB/src/hdl/AudioDemo.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../Nexys-4-DDR-OOB/src/hdl/Dbncr.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../Nexys-4-DDR-OOB/src/hdl/LedBar.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../Nexys-4-DDR-OOB/src/hdl/PdmDes.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../Nexys-4-DDR-OOB/src/hdl/PdmSer.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../Nexys-4-DDR-OOB/src/hdl/Ram2Ddr.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../Nexys-4-DDR-OOB/src/hdl/RamCntrl.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../Nexys-4-DDR-OOB/src/hdl/sSegDemo.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../Nexys-4-DDR-OOB/src/hdl/sSegDisplay.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../Nexys-4-DDR-OOB/src/hdl/Nexys4DdrUserDemo.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../Nexys-4-DDR-OOB/src/ip/ddr/mig.prj">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="ScopedToCell" Val="ddr"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../Nexys-4-DDR-OOB/src/others/Nexys4_all.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="Nexys4DdrUserDemo"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PPRDIR/../Nexys-4-DDR-OOB/src/constraints/Nexys4DDR_C.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
+    <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/Nexys4DdrUserDemo.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015"/>
+    <Step Id="synth_design">
+      <Option Id="FlattenHierarchy">1</Option>
+      <Option Id="Directive">0</Option>
+      <Option Id="FsmExtraction">0</Option>
+    </Step>
+  </Strategy>
+</GenRun>

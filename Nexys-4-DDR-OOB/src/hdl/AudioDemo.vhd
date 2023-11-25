@@ -47,7 +47,6 @@ entity AudioDemo is
       -- Common
       clk_i                : in    std_logic;
       clk_200_i            : in    std_logic;
-      device_temp_i        : in    std_logic_vector(11 downto 0);
       rst_i                : in    std_logic;
 
       -- Peripherals      
@@ -160,7 +159,6 @@ port (
    -- Common
    clk_200MHz_i   : in    std_logic; -- 200 MHz system clock
    rst_i          : in    std_logic; -- active high system reset
-   device_temp_i  : in    std_logic_vector(11 downto 0);
    
    -- RAM interface
    ram_a          : in    std_logic_vector(26 downto 0);
@@ -349,7 +347,6 @@ begin
    port map (
       clk_200MHz_i         => clk_200_i,
       rst_i                => rst_i,
-      device_temp_i        => device_temp_i,
       -- RAM interface
       ram_a                => mem_a,
       ram_dq_i             => mem_dq_i,

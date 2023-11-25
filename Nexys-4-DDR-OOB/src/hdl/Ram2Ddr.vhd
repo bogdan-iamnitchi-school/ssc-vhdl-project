@@ -28,7 +28,6 @@ entity Ram2Ddr is
       -- Common
       clk_200MHz_i         : in    std_logic; -- 200 MHz system clock
       rst_i                : in    std_logic; -- active high system reset
-      device_temp_i        : in    std_logic_vector(11 downto 0);
       
       -- RAM interface
       ram_a                : in    std_logic_vector(26 downto 0);
@@ -160,6 +159,7 @@ signal mem_rd_data_end     : std_logic; -- active-high last 'rd_data'
 signal mem_rd_data_valid   : std_logic; -- active-high 'rd_data' valid
 signal calib_complete      : std_logic; -- active-high calibration complete
 
+signal device_temp_i :std_logic_vector(11 downto 0) := (others => '0'); -- address for current request
 ------------------------------------------------------------------------
 -- Signal attributes (debugging)
 ------------------------------------------------------------------------

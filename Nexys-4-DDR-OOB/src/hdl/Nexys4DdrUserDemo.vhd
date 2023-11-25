@@ -159,26 +159,6 @@ port
 end component;
 
 
-component RgbLed is
-port(
-   clk_i          : in  std_logic;
-   rstn_i         : in  std_logic;
-   btnl_i         : in  std_logic;
-   btnc_i         : in  std_logic;
-   btnr_i         : in  std_logic;
-   btnd_i         : in  std_logic;
-   pwm1_red_o     : out std_logic;
-   pwm1_green_o   : out std_logic;
-   pwm1_blue_o    : out std_logic;
-   pwm2_red_o     : out std_logic;
-   pwm2_green_o   : out std_logic;
-   pwm2_blue_o    : out std_logic;
-   red_out        : out std_logic_vector (7 downto 0);
-   green_out      : out std_logic_vector (7 downto 0);
-   blue_out       : out std_logic_vector (7 downto 0)
-   );
-end component;
-
 component sSegDemo is
 port(
    clk_i          : in std_logic;
@@ -193,7 +173,6 @@ component AudioDemo is
       -- Common
       clk_i                : in    std_logic;
       clk_200_i            : in    std_logic;
-      device_temp_i        : in    std_logic_vector(11 downto 0);
       rst_i                : in    std_logic;
 
       -- Peripherals      
@@ -229,99 +208,6 @@ component AudioDemo is
                                        -- component in the VGA controller
 );
 end component;
-
-
-component TempSensorCtl is
-	Generic (CLOCKFREQ : natural := 100); -- input CLK frequency in MHz
-	Port (
-		TMP_SCL : inout STD_LOGIC;
-		TMP_SDA : inout STD_LOGIC;
-      -- The Interrupt and Critical Temperature Signals
-      -- from the ADT7420 Temperature Sensor are not used in this design
---		TMP_INT : in STD_LOGIC;
---		TMP_CT : in STD_LOGIC;		
-		TEMP_O : out STD_LOGIC_VECTOR(12 downto 0); --12-bit two's complement temperature with sign bit
-		RDY_O : out STD_LOGIC;	--'1' when there is a valid temperature reading on TEMP_O
-		ERR_O : out STD_LOGIC; --'1' if communication error
-		CLK_I : in STD_LOGIC;
-		SRST_I : in STD_LOGIC
-	);
-end component;
-
-component AccelerometerCtl is
-generic 
-(
-   SYSCLK_FREQUENCY_HZ : integer := 100000000;
-   SCLK_FREQUENCY_HZ   : integer := 1000000;
-   NUM_READS_AVG       : integer := 16;
-   UPDATE_FREQUENCY_HZ : integer := 1000
-);
-port
-(
- SYSCLK     : in STD_LOGIC; -- System Clock
- RESET      : in STD_LOGIC; -- Reset button on the Nexys4 board is active low
-
- -- SPI interface Signals
- SCLK       : out STD_LOGIC;
- MOSI       : out STD_LOGIC;
- MISO       : in STD_LOGIC;
- SS         : out STD_LOGIC;
- 
--- Accelerometer data signals
- ACCEL_X_OUT    : out STD_LOGIC_VECTOR (8 downto 0);
- ACCEL_Y_OUT    : out STD_LOGIC_VECTOR (8 downto 0);
- ACCEL_MAG_OUT  : out STD_LOGIC_VECTOR (11 downto 0);
- ACCEL_TMP_OUT  : out STD_LOGIC_VECTOR (11 downto 0)
-);
-end component;
-
-
-COMPONENT MouseCtl is
-PORT(
-   clk            : in std_logic;
-   rst            : in std_logic;
-   xpos           : out std_logic_vector(11 downto 0);
-   ypos           : out std_logic_vector(11 downto 0);
-   zpos           : out std_logic_vector(3 downto 0);
-   left           : out std_logic;
-   middle         : out std_logic;
-   right          : out std_logic;
-   new_event      : out std_logic;
-   value          : in std_logic_vector(11 downto 0);
-   setx           : in std_logic;
-   sety           : in std_logic;
-   setmax_x       : in std_logic;
-   setmax_y       : in std_logic;
-   ps2_clk        : inout std_logic;
-   ps2_data       : inout std_logic
-);
-END COMPONENT;
-
-COMPONENT Vga is
-PORT( 
-   clk_i          : in  std_logic;
-   vga_hs_o       : out std_logic;
-   vga_vs_o       : out std_logic;
-   vga_red_o      : out std_logic_vector(3 downto 0);
-   vga_blue_o     : out std_logic_vector(3 downto 0);
-   vga_green_o    : out std_logic_vector(3 downto 0);
-   RGB_LED_RED    : in STD_LOGIC_VECTOR (7 downto 0);
-   RGB_LED_GREEN  : in STD_LOGIC_VECTOR (7 downto 0);
-   RGB_LED_BLUE   : in STD_LOGIC_VECTOR (7 downto 0);
-   ACCEL_RADIUS   : in  STD_LOGIC_VECTOR (11 downto 0);
-   LEVEL_THRESH   : in  STD_LOGIC_VECTOR (11 downto 0);
-	ACL_X_IN       : in  STD_LOGIC_VECTOR (8 downto 0);
-   ACL_Y_IN       : in  STD_LOGIC_VECTOR (8 downto 0);
-   ACL_MAG_IN     : in  STD_LOGIC_VECTOR (11 downto 0);
-   MIC_M_DATA_I   : IN STD_LOGIC;
-   MIC_M_CLK_RISING  : IN STD_LOGIC;
-   MOUSE_X_POS    :  in std_logic_vector (11 downto 0);
-   MOUSE_Y_POS    :  in std_logic_vector (11 downto 0);
-   XADC_TEMP_VALUE_I : in std_logic_vector (11 downto 0);
-   ADT7420_TEMP_VALUE_I : in std_logic_vector (12 downto 0);
-   ADXL362_TEMP_VALUE_I : in std_logic_vector (11 downto 0)
-   );
-END COMPONENT;
 
 ----------------------------------------------------------------------------------
 -- Signal Declarations
@@ -359,9 +245,6 @@ signal MOUSE_Y_POS: std_logic_vector (11 downto 0);
 -- ADT7420 Temperature Sensor raw Data Signal
 signal tempValue : std_logic_vector(12 downto 0);
 signal tempRdy, tempErr : std_logic;
-
--- XADC Temperature Sensor raw Data signal
-signal fpgaTempValue : std_logic_vector(11 downto 0);
 
 -- pdm_clk and pdm_clk_rising are needed by the VGA controller
 -- to display incoming microphone data
@@ -402,28 +285,6 @@ begin
 
 
 ----------------------------------------------------------------------------------
--- Rgb Led Controller
-----------------------------------------------------------------------------------    
-   Inst_RGB: RgbLed
-   port map(
-      clk_i          => clk_100MHz_buf,
-      rstn_i         => resetn,
-      btnl_i         => btnl_i,
-      btnc_i         => btnc_i,
-      btnr_i         => btnr_i,
-      btnd_i         => btnd_i,
-      pwm1_red_o     => rgb1_red_o,
-      pwm1_green_o   => rgb1_green_o,
-      pwm1_blue_o    => rgb1_blue_o,
-      pwm2_red_o     => rgb2_red_o,
-      pwm2_green_o   => rgb2_green_o,
-      pwm2_blue_o    => rgb2_blue_o,
-      RED_OUT        => rgb_led_red,
-      GREEN_OUT      => rgb_led_green,
-      BLUE_OUT       => rgb_led_blue
-      );
-
-----------------------------------------------------------------------------------
 -- Seven-Segment Display
 ----------------------------------------------------------------------------------     
    Inst_SevenSeg: sSegDemo
@@ -442,7 +303,6 @@ begin
       clk_i          => clk_100MHz_buf,
       clk_200_i      => clk_200MHz_buf,
       rst_i          => reset,
-      device_temp_i  => fpgaTempValue,
       btn_u          => btnu_i,
       leds_o         => led_audio,
       pdm_m_clk_o    => pdm_clk,
@@ -469,112 +329,6 @@ begin
       pdm_clk_rising_o => pdm_clk_rising
    );
 
-   
-----------------------------------------------------------------------------------
--- FPGA Temperature Monitor
-----------------------------------------------------------------------------------
-	Inst_FPGAMonitor: entity work.FPGAMonitor PORT MAP(
-		CLK_I          => clk_100MHz_buf,
-		RST_I          => reset,
-		TEMP_O         => fpgaTempValue
-	);
 
-----------------------------------------------------------------------------------
--- Temperature Sensor Controller
-----------------------------------------------------------------------------------
-	Inst_TempSensorCtl: TempSensorCtl
-	GENERIC MAP (CLOCKFREQ => 100)
-	PORT MAP(
-		TMP_SCL        => TMP_SCL,
-		TMP_SDA        => TMP_SDA,
---		TMP_INT        => TMP_INT,
---		TMP_CT         => TMP_CT,		
-		TEMP_O         => tempValue,
-		RDY_O          => tempRdy,
-		ERR_O          => tempErr,
-		
-		CLK_I          => clk_100MHz_buf,
-		SRST_I         => reset
-	);
-
-----------------------------------------------------------------------------------
--- Accelerometer Controller
-----------------------------------------------------------------------------------
-   Inst_AccelerometerCtl: AccelerometerCtl
-   generic map
-   (
-        SYSCLK_FREQUENCY_HZ   => 100000000,
-        SCLK_FREQUENCY_HZ     => 100000,
-        NUM_READS_AVG         => 16,
-        UPDATE_FREQUENCY_HZ   => 1000
-   )
-   port map
-   (
-       SYSCLK     => clk_100MHz_buf,
-       RESET      => reset, 
-       -- Spi interface Signals
-       SCLK       => sclk,
-       MOSI       => mosi,
-       MISO       => miso,
-       SS         => ss,
-     
-      -- Accelerometer data signals
-       ACCEL_X_OUT   => ACCEL_X,
-       ACCEL_Y_OUT   => ACCEL_Y,
-       ACCEL_MAG_OUT => ACCEL_MAG,
-       ACCEL_TMP_OUT => ACCEL_TMP
-   );
-
-----------------------------------------------------------------------------------
--- Mouse Controller
-----------------------------------------------------------------------------------
-   Inst_MouseCtl: MouseCtl
-   PORT MAP
-   (
-      clk            => clk_100MHz_buf,
-      rst            => reset,
-      xpos           => MOUSE_X_POS,
-      ypos           => MOUSE_Y_POS,
-      zpos           => open,
-      left           => open,
-      middle         => open,
-      right          => open,
-      new_event      => open,
-      value          => x"000",
-      setx           => '0',
-      sety           => '0',
-      setmax_x       => '0',
-      setmax_y       => '0',
-      ps2_clk        => ps2_clk,
-      ps2_data       => ps2_data
-   );
-
-----------------------------------------------------------------------------------
--- VGA Controller
-----------------------------------------------------------------------------------
-   Inst_VGA: Vga
-   port map(
-      clk_i          => clk_100MHz_buf,
-      vga_hs_o       => vga_hs_o,
-      vga_vs_o       => vga_vs_o,
-      vga_red_o      => vga_red_o,
-      vga_blue_o     => vga_blue_o,
-      vga_green_o    => vga_green_o,
-      RGB_LED_RED    => rgb_led_red,
-      RGB_LED_GREEN  => rgb_led_green,
-      RGB_LED_BLUE   => rgb_led_blue,
-      ACCEL_RADIUS   => X"007",
-      LEVEL_THRESH   => X"020",
-      ACL_X_IN       => ACCEL_X,
-      ACL_Y_IN       => ACCEL_Y,
-      ACL_MAG_IN     => ACCEL_MAG,
-      MIC_M_DATA_I   => pdm_data_i,
-      MIC_M_CLK_RISING => pdm_clk_rising,
-      MOUSE_X_POS    => MOUSE_X_POS,
-      MOUSE_Y_POS    => MOUSE_Y_POS,
-      XADC_TEMP_VALUE_I => fpgaTempValue,
-      ADT7420_TEMP_VALUE_I => tempValue,
-      ADXL362_TEMP_VALUE_I => ACCEL_TMP
-      );  
 end Behavioral;
 

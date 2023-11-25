@@ -3,7 +3,7 @@
   "ip_inst": {
     "xci_name": "ClkGen",
     "component_reference": "xilinx.com:ip:clk_wiz:6.0",
-    "ip_revision": "11",
+    "ip_revision": "12",
     "gen_directory": ".",
     "parameters": {
       "component_parameters": {
@@ -599,12 +599,12 @@
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Flow" } ],
-        "IPREVISION": [ { "value": "11" } ],
+        "IPREVISION": [ { "value": "12" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "." } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "." } ],
-        "SWVERSION": [ { "value": "2022.2" } ],
+        "SWVERSION": [ { "value": "2023.1" } ],
         "SYNTHESISFLOW": [ { "value": "GLOBAL" } ]
       }
     },

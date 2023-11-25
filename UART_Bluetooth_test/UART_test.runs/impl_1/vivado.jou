@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.1 (64-bit)
+# SW Build 3865809 on Sun May  7 15:04:56 MDT 2023
+# IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+# SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+# Start of session at: Sat Nov 25 19:58:21 2023
+# Process ID: 199535
+# Current directory: /home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/UART_test/UART_test.runs/impl_1
+# Command line: vivado -log modul_principal.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source modul_principal.tcl -notrace
+# Log file: /home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/UART_test/UART_test.runs/impl_1/modul_principal.vdi
+# Journal file: /home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/UART_test/UART_test.runs/impl_1/vivado.jou
+# Running On: VivoBook, OS: Linux, CPU Frequency: 3925.715 MHz, CPU Physical cores: 4, Host memory: 12376 MB
+#-----------------------------------------------------------
+source modul_principal.tcl -notrace

@@ -3,7 +3,7 @@
   "ip_inst": {
     "xci_name": "BRAM_1",
     "component_reference": "xilinx.com:ip:blk_mem_gen:8.4",
-    "ip_revision": "5",
+    "ip_revision": "6",
     "gen_directory": ".",
     "parameters": {
       "component_parameters": {
@@ -174,12 +174,12 @@
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Flow" } ],
-        "IPREVISION": [ { "value": "5" } ],
+        "IPREVISION": [ { "value": "6" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "." } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "." } ],
-        "SWVERSION": [ { "value": "2022.2" } ],
+        "SWVERSION": [ { "value": "2023.1" } ],
         "SYNTHESISFLOW": [ { "value": "GLOBAL" } ]
       }
     },
