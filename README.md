@@ -13,7 +13,7 @@ To test the UART USB transmision  you can:
   - Which gives:
   
   ```
-  bogdan@VivoBook:~$ ll /dev/serial/by-id
+  user@PC:~$ ll /dev/serial/by-id
   total 0
   drwxr-xr-x 2 root root 80 Nov 25 10:29 ./
   drwxr-xr-x 4 root root 80 Nov 25 10:29 ../
