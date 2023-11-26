@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.1 (lin64) Build 3865809 Sun May  7 15:04:56 MDT 2023
-| Date             : Sun Nov 26 13:53:13 2023
+| Date             : Sun Nov 26 17:02:42 2023
 | Host             : VivoBook running 64-bit Ubuntu 22.04.3 LTS
 | Command          : report_power -file Nexys4DdrUserDemo_power_routed.rpt -pb Nexys4DdrUserDemo_power_summary_routed.pb -rpx Nexys4DdrUserDemo_power_routed.rpx
 | Design           : Nexys4DdrUserDemo
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 1.126        |
+| Total On-Chip Power (W)  | 1.108        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 1.018        |
+| Dynamic (W)              | 1.001        |
 | Device Static (W)        | 0.108        |
 | Effective TJA (C/W)      | 4.6          |
 | Max Ambient (C)          | 79.9         |
@@ -53,21 +53,21 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.019 |       46 |       --- |             --- |
-| Slice Logic              |     0.006 |     9231 |       --- |             --- |
-|   LUT as Logic           |     0.005 |     3589 |     63400 |            5.66 |
-|   Register               |    <0.001 |     3715 |    126800 |            2.93 |
+| Slice Logic              |     0.006 |     9172 |       --- |             --- |
+|   LUT as Logic           |     0.005 |     3546 |     63400 |            5.59 |
+|   Register               |    <0.001 |     3705 |    126800 |            2.92 |
 |   LUT as Distributed RAM |    <0.001 |      354 |     19000 |            1.86 |
-|   CARRY4                 |    <0.001 |      194 |     15850 |            1.22 |
+|   CARRY4                 |    <0.001 |      191 |     15850 |            1.21 |
 |   LUT as Shift Register  |    <0.001 |       18 |     19000 |            0.09 |
-|   F7/F8 Muxes            |    <0.001 |       34 |     63400 |            0.05 |
+|   F7/F8 Muxes            |    <0.001 |       32 |     63400 |            0.05 |
 |   Others                 |     0.000 |      138 |       --- |             --- |
-| Signals                  |     0.008 |     7318 |       --- |             --- |
+| Signals                  |     0.007 |     7274 |       --- |             --- |
 | MMCM                     |     0.218 |        2 |         6 |           33.33 |
 | PLL                      |     0.110 |        1 |         6 |           16.67 |
-| I/O                      |     0.554 |      128 |       210 |           60.95 |
+| I/O                      |     0.538 |      128 |       210 |           60.95 |
 | PHASER                   |     0.102 |       14 |       --- |             --- |
 | Static Power             |     0.108 |          |           |                 |
-| Total                    |     1.126 |          |           |                 |
+| Total                    |     1.108 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -77,9 +77,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.084 |       0.066 |      0.018 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.296 |       0.277 |      0.018 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.012 |       0.008 |      0.004 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.083 |       0.065 |      0.018 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.295 |       0.277 |      0.018 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.008 |       0.004 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.241 |       0.237 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -189,8 +189,8 @@ Table of Contents
 +-------------------+-----------+
 | Name              | Power (W) |
 +-------------------+-----------+
-| Nexys4DdrUserDemo |     1.018 |
-|   Inst_Audio      |     0.880 |
+| Nexys4DdrUserDemo |     1.001 |
+|   Inst_Audio      |     0.879 |
 |     DDR           |     0.874 |
 |       Inst_DDR    |     0.873 |
 |     RAM           |     0.001 |

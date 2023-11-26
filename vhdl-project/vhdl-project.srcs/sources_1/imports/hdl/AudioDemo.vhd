@@ -292,7 +292,7 @@ signal mem_lb           : std_logic;
 
 --UART_TX_CTRL control signals
 
-type UART_STATE_TYPE is (RST_REG, LD_INIT_STR, SEND_CHAR, RDY_LOW, WAIT_RDY, WAIT_BTN, LD_BTN_STR);
+type UART_STATE_TYPE is (RST_REG, IDLE, LD_FIRST, SEND_CHAR, RDY_LOW, WAIT_RDY, LD_SECOND, LD_NEWLINE);
 --Current uart state signal
 signal uartState : UART_STATE_TYPE := RST_REG;
 
@@ -303,83 +303,21 @@ signal uartRdy : std_logic;
 signal uartSend : std_logic := '0';
 signal uartData : std_logic_vector (7 downto 0):= "00000000";
 signal uartTX : std_logic;
-signal done_send : std_logic;
+
+signal begin_send : std_logic;
+signal done_send_async : std_logic;
+signal data_to_send : std_logic_vector(15 downto 0);
 
 constant RESET_CNTR_MAX : std_logic_vector(17 downto 0) := "110000110101000000";-- 100,000,000 * 0.002 = 200,000 = clk cycles per 2 ms
-
---this counter counts the amount of time paused in the UART reset state
 signal reset_cntr : std_logic_vector (17 downto 0) := (others=>'0');
 
-
-type CHAR_ARRAY is array (integer range<>) of std_logic_vector(7 downto 0);
-
-constant MAX_STR_LEN : integer := 27;
-constant WELCOME_STR_LEN : natural := 27;
-constant BTN_STR_LEN : natural := 24;
-
---Contains the current string being sent over uart.
-signal sendStr : CHAR_ARRAY(0 to (MAX_STR_LEN - 1));
+signal data_send : std_logic_vector (15 downto 0) := x"6162";
+signal byte_data : std_logic_vector (7 downto 0);
 
 --Contains the length of the current string being sent over uart.
-signal strEnd : natural;
-
---Contains the index of the next character to be sent over uart
---within the sendStr variable.
-signal strIndex : natural;
-
-constant WELCOME_STR : CHAR_ARRAY(0 to 26) := (               X"0A",  --\n
-															  X"0D",  --\r
-															  X"4E",  --N
-															  X"45",  --E
-															  X"58",  --X
-															  X"59",  --Y
-															  X"53",  --S
-															  X"34",  --4
-															  X"20",  -- 
-															  X"47",  --G
-															  X"50",  --P
-															  X"49",  --I
-															  X"4F",  --O
-															  X"2F",  --/
-															  X"55",  --U
-															  X"41",  --A
-															  X"52",  --R
-															  X"54",  --T
-															  X"20",  -- 
-															  X"44",  --D
-															  X"45",  --E
-															  X"4D",  --M
-															  X"4F",  --O
-															  X"21",  --!
-															  X"0A",  --\n
-															  X"0A",  --\n
-															  X"0D"); --\r
-															  
---Button press string definition.
-constant BTN_STR : CHAR_ARRAY(0 to 23) :=     (               X"42",  --B
-															  X"75",  --u
-															  X"74",  --t
-															  X"74",  --t
-															  X"6F",  --o
-															  X"6E",  --n
-															  X"20",  -- 
-															  X"70",  --p
-															  X"72",  --r
-															  X"65",  --e
-															  X"73",  --s
-															  X"73",  --s
-															  X"20",  --
-															  X"64",  --d
-															  X"65",  --e
-															  X"74",  --t
-															  X"65",  --e
-															  X"63",  --c
-															  X"74",  --t
-															  X"65",  --e
-															  X"64",  --d
-															  X"21",  --!
-															  X"0A",  --\n
-															  X"0D"); --\r
+signal BYTE_COUNT : natural := 3;
+signal byte_index : natural := 0;
+signal newline : std_logic_vector (7 downto 0) := x"0A";
 
 ------------------------------------------------------------------------
 -- Module Implementation
@@ -434,10 +372,15 @@ begin
 		else	
 			case uartState is 
 			when RST_REG =>
-        if (reset_cntr = RESET_CNTR_MAX) then
-          uartState <= LD_INIT_STR;
-        end if;
-			when LD_INIT_STR =>
+                if (reset_cntr = RESET_CNTR_MAX) then
+                  uartState <= IDLE;
+                end if;
+            when IDLE =>
+                if (btnc_debounced = '1') then
+                  done_send_async <= '0';
+                  uartState <= LD_FIRST;
+                end if;
+			when LD_FIRST =>
 				uartState <= SEND_CHAR;
 			when SEND_CHAR =>
 				uartState <= RDY_LOW;
@@ -445,17 +388,19 @@ begin
 				uartState <= WAIT_RDY;
 			when WAIT_RDY =>
 				if (uartRdy = '1') then
-					if (strEnd = strIndex) then
-						uartState <= WAIT_BTN;
+					if (byte_index = BYTE_COUNT) then
+					    done_send_async <= '1';
+					    begin_send <= '0';
+						uartState <= IDLE;
+					elsif (byte_index = BYTE_COUNT-1) then
+					    uartState <= LD_NEWLINE;
 					else
-						uartState <= SEND_CHAR;
+						uartState <= LD_SECOND;
 					end if;
 				end if;
-			when WAIT_BTN =>
-				if (btnc_debounced = '1') then
-					uartState <= LD_BTN_STR;
-				end if;
-			when LD_BTN_STR =>
+			when LD_SECOND =>
+				uartState <= SEND_CHAR;
+		    when LD_NEWLINE =>
 				uartState <= SEND_CHAR;
 			when others=> --should never be reached
 				uartState <= RST_REG;
@@ -469,12 +414,12 @@ end process;
 string_load_process : process (clk_i)
 begin
 	if (rising_edge(clk_i)) then
-		if (uartState = LD_INIT_STR) then
-			sendStr <= WELCOME_STR;
-			strEnd <= WELCOME_STR_LEN;
-		elsif (uartState = LD_BTN_STR) then
-			sendStr(0 to 23) <= BTN_STR;
-			strEnd <= BTN_STR_LEN;
+		if (uartState = LD_FIRST) then
+			byte_data <= data_send(15 downto 8);
+		elsif (uartState = LD_SECOND) then
+            byte_data <= data_send(7 downto 0);
+        else
+            byte_data <= newline;
 		end if;
 	end if;
 end process;
@@ -484,10 +429,10 @@ end process;
 char_count_process : process (clk_i)
 begin
 	if (rising_edge(clk_i)) then
-		if (uartState = LD_INIT_STR or uartState = LD_BTN_STR) then
-			strIndex <= 0;
+		if (uartState = IDLE) then
+			byte_index <= 0;
 		elsif (uartState = SEND_CHAR) then
-			strIndex <= strIndex + 1;
+			byte_index <= byte_index + 1;
 		end if;
 	end if;
 end process;
@@ -498,7 +443,7 @@ begin
 	if (rising_edge(clk_i)) then
 		if (uartState = SEND_CHAR) then
 			uartSend <= '1';
-			uartData <= sendStr(strIndex);
+			uartData <= byte_data;
 		else
 			uartSend <= '0';
 		end if;
@@ -548,7 +493,7 @@ tx_pmodbt <= uartTX;
         pdm_m_data_i         => pdm_m_data_i,
         pdm_lrsel_o          => pdm_lrsel_o
     );
-   
+
 ------------------------------------------------------------------------
 -- Memory
 ------------------------------------------------------------------------
@@ -611,69 +556,6 @@ tx_pmodbt <= uartTX;
       
    done_int <= done_des when state = stRecord else
                done_ser when state = stPlayback else '0';
-
---------------------------------------------------------------------------
----- Memory
---------------------------------------------------------------------------
---   RAM: RamCntrl
---    generic map (
---        C_RW_CYCLE_NS        => RW_CYCLE_NS
---    )
---    port map (
---        clk_i                => clk_i,
---        rst_i                => rst_i,
---        rnw_i                => rnw_int,
---        be_i                 => "0011", -- 16-bit access
---        addr_i               => addr_int,
---        data_i               => data_dess,
---        cs_i                 => done_int,
---        data_o               => data_ser,
---        rd_ack_o             => rd_ack_int,
---        wr_ack_o             => open,
---        -- RAM Memory signals
---        Mem_A                => mem_a,
---        Mem_DQ_O             => mem_dq_i,
---        Mem_DQ_I             => mem_dq_o,
---        Mem_DQ_T             => open,
---        Mem_CEN              => mem_cen,
---        Mem_OEN              => mem_oen,
---        Mem_WEN              => mem_wen,
---        Mem_UB               => mem_ub,
---        Mem_LB               => mem_lb
---    );
---
---    DDR: Ram2Ddr
---    port map (
---        clk_200MHz_i         => clk_200_i,
---        rst_i                => rst_i,
---        -- RAM interface
---        ram_a                => mem_a,
---        ram_dq_i             => mem_dq_i,
---        ram_dq_o             => mem_dq_o,
---        ram_cen              => mem_cen,
---        ram_oen              => mem_oen,
---        ram_wen              => mem_wen,
---        ram_ub               => mem_ub,
---        ram_lb               => mem_lb,
---        -- DDR2 interface
---        ddr2_addr            => ddr2_addr,
---        ddr2_ba              => ddr2_ba,
---        ddr2_ras_n           => ddr2_ras_n,
---        ddr2_cas_n           => ddr2_cas_n,
---        ddr2_we_n            => ddr2_we_n,
---        ddr2_ck_p            => ddr2_ck_p,
---        ddr2_ck_n            => ddr2_ck_n,
---        ddr2_cke             => ddr2_cke,
---        ddr2_cs_n            => ddr2_cs_n,
---        ddr2_dm              => ddr2_dm,
---        ddr2_odt             => ddr2_odt,
---        ddr2_dq              => ddr2_dq,
---        ddr2_dqs_p           => ddr2_dqs_p,
---        ddr2_dqs_n           => ddr2_dqs_n
---    );
---      
---   done_int <= done_des when state = stRecord else
---               done_ser when state = stPlayback else '0';
 
 ------------------------------------------------------------------------
 -- Serializer
@@ -744,8 +626,6 @@ tx_pmodbt <= uartTX;
          done_ser_dly <= done_ser;
       end if;
    end process;
-
-
 
 ------------------------------------------------------------------------
 --  FSM

@@ -11,12 +11,18 @@
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source Nexys4DdrUserDemo.tcl -notrace
-create_project: Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1339.566 ; gain = 0.023 ; free physical = 1681 ; free virtual = 4973
+create_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1339.562 ; gain = 0.023 ; free physical = 2807 ; free virtual = 5537
 Command: read_checkpoint -auto_incremental -incremental /home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/utils_1/imports/synth_1/Nexys4DdrUserDemo.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from /home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/utils_1/imports/synth_1/Nexys4DdrUserDemo.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
 Command: synth_design -top Nexys4DdrUserDemo -part xc7a100tcsg324-1 -flatten_hierarchy none -directive RuntimeOptimized -fsm_extraction off
 Starting synth_design
+WARNING: [Vivado_Tcl 4-393] The 'Synthesis' target of the following IPs are stale, please generate the output products using the generate_target or synth_ip command before running synth_design.
+/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/ip/ddr/ddr.xci
+
+WARNING: [Vivado_Tcl 4-393] The 'Implementation' target of the following IPs are stale, please generate the output products using the generate_target or synth_ip command before running synth_design.
+/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/ip/ddr/ddr.xci
+
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
@@ -24,7 +30,7 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 227755
+INFO: [Synth 8-7075] Helper process launched with PID 370544
 WARNING: [Synth 8-10515] begin/end is required for generate-for in this mode of Verilog [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.gen/sources_1/ip/ddr/ddr/user_design/rtl/controller/mig_7series_v4_2_arb_row_col.v:253]
 INFO: [Synth 8-11241] undeclared symbol 'dbg_sel_po_incdec', assumed default net type 'wire' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.gen/sources_1/ip/ddr/ddr/user_design/rtl/ddr_mig.v:1022]
 INFO: [Synth 8-11241] undeclared symbol 'dbg_po_f_inc', assumed default net type 'wire' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.gen/sources_1/ip/ddr/ddr/user_design/rtl/ddr_mig.v:1026]
@@ -32,7 +38,7 @@ INFO: [Synth 8-11241] undeclared symbol 'dbg_po_f_stg23_sel', assumed default ne
 INFO: [Synth 8-11241] undeclared symbol 'dbg_po_f_dec', assumed default net type 'wire' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.gen/sources_1/ip/ddr/ddr/user_design/rtl/ddr_mig.v:1028]
 INFO: [Synth 8-11241] undeclared symbol 'dbg_poc', assumed default net type 'wire' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.gen/sources_1/ip/ddr/ddr/user_design/rtl/ddr_mig.v:1082]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2066.406 ; gain = 377.801 ; free physical = 678 ; free virtual = 3970
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2068.371 ; gain = 379.770 ; free physical = 1814 ; free virtual = 4544
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'Nexys4DdrUserDemo' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Nexys4DdrUserDemo.vhd:144]
 INFO: [Synth 8-3491] module 'ClkGen' declared at '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.gen/sources_1/ip/ClkGen/ClkGen.v:69' bound to instance 'Inst_ClkGen' of component 'ClkGen' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Nexys4DdrUserDemo.vhd:284]
@@ -72,32 +78,33 @@ INFO: [Synth 8-256] done synthesizing module 'sSegDemo' (0#1) [/home/bogdan/Facu
 INFO: [Synth 8-3491] module 'AudioDemo' declared at '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:45' bound to instance 'Inst_Audio' of component 'AudioDemo' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Nexys4DdrUserDemo.vhd:309]
 INFO: [Synth 8-638] synthesizing module 'AudioDemo' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:89]
 	Parameter NR_OF_CLKS bound to: 4095 - type: integer 
-INFO: [Synth 8-3491] module 'Dbncr' declared at '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Dbncr.vhd:35' bound to instance 'Btnd' of component 'Dbncr' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:392]
+INFO: [Synth 8-3491] module 'Dbncr' declared at '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Dbncr.vhd:35' bound to instance 'Btnd' of component 'Dbncr' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:331]
 INFO: [Synth 8-638] synthesizing module 'Dbncr' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Dbncr.vhd:46]
 	Parameter NR_OF_CLKS bound to: 4095 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'Dbncr' (0#1) [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Dbncr.vhd:46]
 	Parameter NR_OF_CLKS bound to: 4095 - type: integer 
-INFO: [Synth 8-3491] module 'Dbncr' declared at '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Dbncr.vhd:35' bound to instance 'Btnc' of component 'Dbncr' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:402]
+INFO: [Synth 8-3491] module 'Dbncr' declared at '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Dbncr.vhd:35' bound to instance 'Btnc' of component 'Dbncr' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:341]
+INFO: [Synth 8-226] default block is never used [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:373]
 INFO: [Synth 8-638] synthesizing module 'UART_TX_CTRL' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/UART-Transmision/UART_TX_CTRL.vhd:57]
 INFO: [Synth 8-256] done synthesizing module 'UART_TX_CTRL' (0#1) [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/UART-Transmision/UART_TX_CTRL.vhd:57]
 	Parameter NR_OF_CLKS bound to: 4095 - type: integer 
-INFO: [Synth 8-3491] module 'Dbncr' declared at '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Dbncr.vhd:35' bound to instance 'Btnu' of component 'Dbncr' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:522]
+INFO: [Synth 8-3491] module 'Dbncr' declared at '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Dbncr.vhd:35' bound to instance 'Btnu' of component 'Dbncr' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:468]
 	Parameter C_NR_OF_BITS bound to: 16 - type: integer 
 	Parameter C_SYS_CLK_FREQ_MHZ bound to: 100 - type: integer 
 	Parameter C_PDM_FREQ_HZ bound to: 2000000 - type: integer 
-INFO: [Synth 8-3491] module 'PdmDes' declared at '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/PdmDes.vhd:39' bound to instance 'Deserializer' of component 'PdmDes' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:535]
+INFO: [Synth 8-3491] module 'PdmDes' declared at '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/PdmDes.vhd:39' bound to instance 'Deserializer' of component 'PdmDes' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:481]
 INFO: [Synth 8-638] synthesizing module 'PdmDes' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/PdmDes.vhd:59]
 	Parameter C_NR_OF_BITS bound to: 16 - type: integer 
 	Parameter C_SYS_CLK_FREQ_MHZ bound to: 100 - type: integer 
 	Parameter C_PDM_FREQ_HZ bound to: 2000000 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'PdmDes' (0#1) [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/PdmDes.vhd:59]
 	Parameter C_RW_CYCLE_NS bound to: 1200 - type: integer 
-INFO: [Synth 8-3491] module 'RamCntrl' declared at '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/RamCntrl.vhd:23' bound to instance 'RAM' of component 'RamCntrl' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:554]
+INFO: [Synth 8-3491] module 'RamCntrl' declared at '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/RamCntrl.vhd:23' bound to instance 'RAM' of component 'RamCntrl' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:500]
 INFO: [Synth 8-638] synthesizing module 'RamCntrl' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/RamCntrl.vhd:54]
 	Parameter C_RW_CYCLE_NS bound to: 1200 - type: integer 
 INFO: [Synth 8-226] default block is never used [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/RamCntrl.vhd:134]
 INFO: [Synth 8-256] done synthesizing module 'RamCntrl' (0#1) [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/RamCntrl.vhd:54]
-INFO: [Synth 8-3491] module 'Ram2Ddr' declared at '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Ram2Ddr.vhd:26' bound to instance 'DDR' of component 'Ram2Ddr' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:581]
+INFO: [Synth 8-3491] module 'Ram2Ddr' declared at '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Ram2Ddr.vhd:26' bound to instance 'DDR' of component 'Ram2Ddr' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:527]
 INFO: [Synth 8-638] synthesizing module 'Ram2Ddr' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Ram2Ddr.vhd:60]
 INFO: [Synth 8-3491] module 'ddr' declared at '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.gen/sources_1/ip/ddr/ddr/user_design/rtl/ddr.v:71' bound to instance 'Inst_DDR' of component 'ddr' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Ram2Ddr.vhd:191]
 INFO: [Synth 8-6157] synthesizing module 'ddr' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.gen/sources_1/ip/ddr/ddr/user_design/rtl/ddr.v:71]
@@ -519,17 +526,17 @@ INFO: [Synth 8-256] done synthesizing module 'Ram2Ddr' (0#1) [/home/bogdan/Facul
 	Parameter C_NR_OF_BITS bound to: 16 - type: integer 
 	Parameter C_SYS_CLK_FREQ_MHZ bound to: 100 - type: integer 
 	Parameter C_PDM_FREQ_HZ bound to: 2000000 - type: integer 
-INFO: [Synth 8-3491] module 'PdmSer' declared at '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/PdmSer.vhd:41' bound to instance 'Serializer' of component 'PdmSer' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:632]
+INFO: [Synth 8-3491] module 'PdmSer' declared at '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/PdmSer.vhd:41' bound to instance 'Serializer' of component 'PdmSer' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:578]
 INFO: [Synth 8-638] synthesizing module 'PdmSer' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/PdmSer.vhd:62]
 	Parameter C_NR_OF_BITS bound to: 16 - type: integer 
 	Parameter C_SYS_CLK_FREQ_MHZ bound to: 100 - type: integer 
 	Parameter C_PDM_FREQ_HZ bound to: 2000000 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'PdmSer' (0#1) [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/PdmSer.vhd:62]
-INFO: [Synth 8-226] default block is never used [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:704]
-INFO: [Synth 8-226] default block is never used [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:752]
+INFO: [Synth 8-226] default block is never used [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:648]
+INFO: [Synth 8-226] default block is never used [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:696]
 	Parameter C_SYS_CLK_FREQ_MHZ bound to: 100 - type: integer 
 	Parameter C_SECONDS_TO_RECORD bound to: 5 - type: integer 
-INFO: [Synth 8-3491] module 'LedBar' declared at '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/LedBar.vhd:37' bound to instance 'Leds' of component 'LedBar' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:777]
+INFO: [Synth 8-3491] module 'LedBar' declared at '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/LedBar.vhd:37' bound to instance 'Leds' of component 'LedBar' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:721]
 INFO: [Synth 8-638] synthesizing module 'LedBar' [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/LedBar.vhd:50]
 	Parameter C_SYS_CLK_FREQ_MHZ bound to: 100 - type: integer 
 	Parameter C_SECONDS_TO_RECORD bound to: 5 - type: integer 
@@ -686,8 +693,10 @@ WARNING: [Synth 8-3848] Net error in module/entity mig_7series_v4_2_memc_ui_top_
 WARNING: [Synth 8-3848] Net clk_ref_p in module/entity ddr_mig does not have driver. [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.gen/sources_1/ip/ddr/ddr/user_design/rtl/ddr_mig.v:592]
 WARNING: [Synth 8-3848] Net clk_ref_n in module/entity ddr_mig does not have driver. [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.gen/sources_1/ip/ddr/ddr/user_design/rtl/ddr_mig.v:593]
 WARNING: [Synth 8-3848] Net tx_pmodbt in module/entity PdmSer does not have driver. [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/PdmSer.vhd:58]
-WARNING: [Synth 8-6014] Unused sequential element en_ser_reg was removed.  [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:639]
-WARNING: [Synth 8-6014] Unused sequential element rnl_int_reg was removed.  [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:711]
+WARNING: [Synth 8-6014] Unused sequential element done_send_async_reg was removed.  [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:380]
+WARNING: [Synth 8-6014] Unused sequential element begin_send_reg was removed.  [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:393]
+WARNING: [Synth 8-6014] Unused sequential element en_ser_reg was removed.  [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:585]
+WARNING: [Synth 8-6014] Unused sequential element rnl_int_reg was removed.  [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd:655]
 WARNING: [Synth 8-3848] Net rgb1_red_o in module/entity Nexys4DdrUserDemo does not have driver. [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Nexys4DdrUserDemo.vhd:80]
 WARNING: [Synth 8-3848] Net rgb1_green_o in module/entity Nexys4DdrUserDemo does not have driver. [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Nexys4DdrUserDemo.vhd:81]
 WARNING: [Synth 8-3848] Net rgb1_blue_o in module/entity Nexys4DdrUserDemo does not have driver. [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Nexys4DdrUserDemo.vhd:82]
@@ -804,18 +813,18 @@ WARNING: [Synth 8-7129] Port dbg_phy_init[221] in module mig_7series_v4_2_ddr_ph
 WARNING: [Synth 8-7129] Port dbg_phy_init[220] in module mig_7series_v4_2_ddr_phy_init is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2304.758 ; gain = 616.152 ; free physical = 427 ; free virtual = 3724
+Finished RTL Elaboration : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2302.785 ; gain = 614.184 ; free physical = 1569 ; free virtual = 4304
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2304.758 ; gain = 616.152 ; free physical = 427 ; free virtual = 3723
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2302.785 ; gain = 614.184 ; free physical = 1569 ; free virtual = 4304
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2304.758 ; gain = 616.152 ; free physical = 427 ; free virtual = 3723
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2302.785 ; gain = 614.184 ; free physical = 1569 ; free virtual = 4304
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.21 ; elapsed = 00:00:00.21 . Memory (MB): peak = 2304.758 ; gain = 0.000 ; free physical = 435 ; free virtual = 3731
+Netlist sorting complete. Time (s): cpu = 00:00:00.17 ; elapsed = 00:00:00.18 . Memory (MB): peak = 2302.785 ; gain = 0.000 ; free physical = 1569 ; free virtual = 4304
 INFO: [Netlist 29-17] Analyzing 87 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -846,25 +855,25 @@ Resolution: To avoid this warning, move constraints listed in [.Xil/Nexys4DdrUse
 INFO: [Timing 38-2] Deriving generated clocks
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2427.234 ; gain = 0.000 ; free physical = 438 ; free virtual = 3719
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2425.629 ; gain = 0.000 ; free physical = 1583 ; free virtual = 4302
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 46 instances were transformed.
   IOBUFDS_INTERMDISABLE => IOBUFDS_INTERMDISABLE (IBUFDS_INTERMDISABLE_INT(x2), INV, OBUFTDS(x2)): 2 instances
   IOBUF_INTERMDISABLE => IOBUF_INTERMDISABLE (IBUF_INTERMDISABLE, OBUFT): 16 instances
   RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 28 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.07 . Memory (MB): peak = 2427.234 ; gain = 0.000 ; free physical = 438 ; free virtual = 3719
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.06 . Memory (MB): peak = 2425.629 ; gain = 0.000 ; free physical = 1583 ; free virtual = 4302
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:29 ; elapsed = 00:00:28 . Memory (MB): peak = 2427.234 ; gain = 738.629 ; free physical = 418 ; free virtual = 3715
+Finished Constraint Validation : Time (s): cpu = 00:00:24 ; elapsed = 00:00:23 . Memory (MB): peak = 2425.629 ; gain = 737.027 ; free physical = 1565 ; free virtual = 4301
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:29 ; elapsed = 00:00:28 . Memory (MB): peak = 2427.234 ; gain = 738.629 ; free physical = 418 ; free virtual = 3715
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:24 ; elapsed = 00:00:23 . Memory (MB): peak = 2425.629 ; gain = 737.027 ; free physical = 1565 ; free virtual = 4301
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -875,11 +884,11 @@ Applied set_property KEEP_HIERARCHY = SOFT for Inst_ClkGen/inst. (constraint fil
 Applied set_property KEEP_HIERARCHY = SOFT for Inst_Audio/DDR/Inst_DDR. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for Inst_ClkGen. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:30 ; elapsed = 00:00:28 . Memory (MB): peak = 2427.234 ; gain = 738.629 ; free physical = 418 ; free virtual = 3715
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:23 . Memory (MB): peak = 2425.629 ; gain = 737.027 ; free physical = 1565 ; free virtual = 4301
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-3936] Found unconnected internal register 'AddrInt_reg' and it is trimmed from '32' to '27' bits. [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/RamCntrl.vhd:109]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:39 ; elapsed = 00:00:38 . Memory (MB): peak = 2427.234 ; gain = 738.629 ; free physical = 434 ; free virtual = 3718
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:32 ; elapsed = 00:00:31 . Memory (MB): peak = 2425.629 ; gain = 737.027 ; free physical = 1563 ; free virtual = 4302
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -922,7 +931,6 @@ Detailed RTL Component Info :
 	               80 Bit    Registers := 3     
 	               52 Bit    Registers := 1     
 	               32 Bit    Registers := 8     
-	               31 Bit    Registers := 1     
 	               30 Bit    Registers := 1     
 	               27 Bit    Registers := 6     
 	               16 Bit    Registers := 20    
@@ -932,7 +940,7 @@ Detailed RTL Component Info :
 	               11 Bit    Registers := 1     
 	               10 Bit    Registers := 4     
 	                9 Bit    Registers := 10    
-	                8 Bit    Registers := 40    
+	                8 Bit    Registers := 15    
 	                7 Bit    Registers := 4     
 	                6 Bit    Registers := 45    
 	                5 Bit    Registers := 42    
@@ -955,7 +963,6 @@ Detailed RTL Component Info :
 	   7 Input   32 Bit        Muxes := 1     
 	   5 Input   32 Bit        Muxes := 1     
 	   4 Input   32 Bit        Muxes := 1     
-	   3 Input   31 Bit        Muxes := 1     
 	   2 Input   30 Bit        Muxes := 12    
 	   4 Input   30 Bit        Muxes := 4     
 	   2 Input   20 Bit        Muxes := 8     
@@ -972,13 +979,12 @@ Detailed RTL Component Info :
 	   4 Input    9 Bit        Muxes := 6     
 	   2 Input    9 Bit        Muxes := 16    
 	   8 Input    8 Bit        Muxes := 2     
-	   2 Input    8 Bit        Muxes := 55    
+	   2 Input    8 Bit        Muxes := 56    
 	   5 Input    8 Bit        Muxes := 1     
-	   3 Input    8 Bit        Muxes := 19    
 	   3 Input    7 Bit        Muxes := 3     
-	   2 Input    7 Bit        Muxes := 15    
+	   2 Input    7 Bit        Muxes := 7     
 	   4 Input    7 Bit        Muxes := 2     
-	   2 Input    6 Bit        Muxes := 74    
+	   2 Input    6 Bit        Muxes := 65    
 	   4 Input    6 Bit        Muxes := 8     
 	   5 Input    6 Bit        Muxes := 3     
 	  16 Input    6 Bit        Muxes := 1     
@@ -996,30 +1002,28 @@ Detailed RTL Component Info :
 	  36 Input    4 Bit        Muxes := 1     
 	   7 Input    4 Bit        Muxes := 1     
 	  10 Input    4 Bit        Muxes := 1     
-	  10 Input    3 Bit        Muxes := 1     
+	  10 Input    3 Bit        Muxes := 2     
 	   2 Input    3 Bit        Muxes := 27    
 	   3 Input    3 Bit        Muxes := 1     
 	   4 Input    3 Bit        Muxes := 3     
 	   7 Input    3 Bit        Muxes := 1     
-	   9 Input    3 Bit        Muxes := 1     
 	   4 Input    2 Bit        Muxes := 10    
 	   5 Input    2 Bit        Muxes := 1     
-	   2 Input    2 Bit        Muxes := 71    
+	   2 Input    2 Bit        Muxes := 70    
 	   8 Input    2 Bit        Muxes := 5     
 	   6 Input    2 Bit        Muxes := 1     
 	  10 Input    2 Bit        Muxes := 1     
 	   3 Input    2 Bit        Muxes := 1     
 	   2 Input    1 Bit        Muxes := 475   
 	   4 Input    1 Bit        Muxes := 210   
-	   5 Input    1 Bit        Muxes := 2     
-	   3 Input    1 Bit        Muxes := 16    
+	   5 Input    1 Bit        Muxes := 3     
+	   3 Input    1 Bit        Muxes := 17    
 	   8 Input    1 Bit        Muxes := 5     
 	  16 Input    1 Bit        Muxes := 18    
 	  36 Input    1 Bit        Muxes := 28    
 	   9 Input    1 Bit        Muxes := 1     
 	  10 Input    1 Bit        Muxes := 17    
 	  12 Input    1 Bit        Muxes := 1     
-	   6 Input    1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -1037,7 +1041,7 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:08 ; elapsed = 00:01:07 . Memory (MB): peak = 2427.234 ; gain = 738.629 ; free physical = 343 ; free virtual = 3663
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:54 ; elapsed = 00:00:53 . Memory (MB): peak = 2425.629 ; gain = 737.027 ; free physical = 1514 ; free virtual = 4261
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1071,7 +1075,7 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:14 ; elapsed = 00:01:14 . Memory (MB): peak = 2427.234 ; gain = 738.629 ; free physical = 337 ; free virtual = 3657
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:59 ; elapsed = 00:00:59 . Memory (MB): peak = 2425.629 ; gain = 737.027 ; free physical = 1494 ; free virtual = 4257
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1096,7 +1100,7 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:22 ; elapsed = 00:01:22 . Memory (MB): peak = 2427.234 ; gain = 738.629 ; free physical = 341 ; free virtual = 3661
+Finished Technology Mapping : Time (s): cpu = 00:01:05 ; elapsed = 00:01:05 . Memory (MB): peak = 2425.629 ; gain = 737.027 ; free physical = 1494 ; free virtual = 4257
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -1124,19 +1128,19 @@ WARNING: [Synth 8-5396] Clock pin C has keep related attribute (keep/mark_debug/
 WARNING: [Synth 8-5396] Clock pin C has keep related attribute (keep/mark_debug/dont_touch) which could create extra logic on its net [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.gen/sources_1/ip/ddr/ddr/user_design/rtl/clocking/mig_7series_v4_2_iodelay_ctrl.v:332]
 WARNING: [Synth 8-5396] Clock pin C has keep related attribute (keep/mark_debug/dont_touch) which could create extra logic on its net [/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.gen/sources_1/ip/ddr/ddr/user_design/rtl/clocking/mig_7series_v4_2_iodelay_ctrl.v:332]
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:28 ; elapsed = 00:01:27 . Memory (MB): peak = 2427.234 ; gain = 738.629 ; free physical = 336 ; free virtual = 3656
+Finished IO Insertion : Time (s): cpu = 00:01:10 ; elapsed = 00:01:09 . Memory (MB): peak = 2425.629 ; gain = 737.027 ; free physical = 1508 ; free virtual = 4255
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:28 ; elapsed = 00:01:27 . Memory (MB): peak = 2427.234 ; gain = 738.629 ; free physical = 336 ; free virtual = 3656
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:10 ; elapsed = 00:01:09 . Memory (MB): peak = 2425.629 ; gain = 737.027 ; free physical = 1508 ; free virtual = 4255
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:28 ; elapsed = 00:01:28 . Memory (MB): peak = 2427.234 ; gain = 738.629 ; free physical = 336 ; free virtual = 3656
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:10 ; elapsed = 00:01:10 . Memory (MB): peak = 2425.629 ; gain = 737.027 ; free physical = 1508 ; free virtual = 4255
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1181,19 +1185,19 @@ Report Cell Usage:
 |1     |BUFG                  |     6|
 |2     |BUFH                  |     1|
 |3     |BUFIO                 |     1|
-|4     |CARRY4                |   194|
+|4     |CARRY4                |   191|
 |5     |IDELAYCTRL            |     1|
 |6     |IDELAYE2              |    16|
 |7     |IN_FIFO               |     2|
 |8     |ISERDESE2             |    16|
-|9     |LUT1                  |   369|
-|10    |LUT2                  |   457|
-|11    |LUT3                  |  1061|
-|12    |LUT4                  |   932|
-|13    |LUT5                  |   583|
-|14    |LUT6                  |  1179|
+|9     |LUT1                  |   368|
+|10    |LUT2                  |   458|
+|11    |LUT3                  |  1051|
+|12    |LUT4                  |   919|
+|13    |LUT5                  |   571|
+|14    |LUT6                  |  1170|
 |15    |MMCME2_ADV            |     2|
-|16    |MUXF7                 |    34|
+|16    |MUXF7                 |    32|
 |17    |ODDR                  |     5|
 |18    |OSERDESE2             |    42|
 |21    |OUT_FIFO              |     4|
@@ -1208,7 +1212,7 @@ Report Cell Usage:
 |32    |SRLC32E               |     1|
 |33    |FDCE                  |     1|
 |34    |FDPE                  |    67|
-|35    |FDRE                  |  3715|
+|35    |FDRE                  |  3705|
 |36    |FDSE                  |    75|
 |37    |IBUF                  |    22|
 |38    |IOBUFDS_INTERMDISABLE |     2|
@@ -1218,18 +1222,18 @@ Report Cell Usage:
 |42    |OBUFT                 |    26|
 +------+----------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:28 ; elapsed = 00:01:28 . Memory (MB): peak = 2427.234 ; gain = 738.629 ; free physical = 336 ; free virtual = 3656
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:10 ; elapsed = 00:01:10 . Memory (MB): peak = 2425.629 ; gain = 737.027 ; free physical = 1508 ; free virtual = 4255
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 18 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:20 ; elapsed = 00:01:22 . Memory (MB): peak = 2427.234 ; gain = 616.152 ; free physical = 336 ; free virtual = 3656
-Synthesis Optimization Complete : Time (s): cpu = 00:01:28 ; elapsed = 00:01:28 . Memory (MB): peak = 2427.234 ; gain = 738.629 ; free physical = 336 ; free virtual = 3656
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:03 ; elapsed = 00:01:05 . Memory (MB): peak = 2425.629 ; gain = 614.184 ; free physical = 1508 ; free virtual = 4255
+Synthesis Optimization Complete : Time (s): cpu = 00:01:10 ; elapsed = 00:01:10 . Memory (MB): peak = 2425.629 ; gain = 737.027 ; free physical = 1508 ; free virtual = 4255
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.13 ; elapsed = 00:00:00.13 . Memory (MB): peak = 2427.234 ; gain = 0.000 ; free physical = 613 ; free virtual = 3933
-INFO: [Netlist 29-17] Analyzing 377 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.12 ; elapsed = 00:00:00.12 . Memory (MB): peak = 2425.629 ; gain = 0.000 ; free physical = 1797 ; free virtual = 4545
+INFO: [Netlist 29-17] Analyzing 372 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 2 inverter(s) to 16 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2443.242 ; gain = 0.000 ; free physical = 618 ; free virtual = 3939
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2425.629 ; gain = 0.000 ; free physical = 1796 ; free virtual = 4544
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 109 instances were transformed.
   IOBUFDS_INTERMDISABLE => IOBUFDS_INTERMDISABLE (IBUFDS_INTERMDISABLE_INT(x2), INV, OBUFTDS(x2)): 2 instances
@@ -1238,13 +1242,13 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 88 instances
   RAM32X1D => RAM32X1D (RAMD32(x2)): 2 instances
 
-Synth Design complete | Checksum: feac1926
+Synth Design complete | Checksum: 858aa180
 INFO: [Common 17-83] Releasing license: Synthesis
-267 Infos, 311 Warnings, 0 Critical Warnings and 0 Errors encountered.
+268 Infos, 315 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:40 ; elapsed = 00:01:35 . Memory (MB): peak = 2443.242 ; gain = 1086.645 ; free physical = 618 ; free virtual = 3939
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2183.054; main = 1897.687; forked = 416.251
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3413.738; main = 2443.246; forked = 986.500
+synth_design: Time (s): cpu = 00:01:20 ; elapsed = 00:01:16 . Memory (MB): peak = 2425.629 ; gain = 1069.035 ; free physical = 1796 ; free virtual = 4544
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2169.096; main = 1884.729; forked = 417.270
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3380.121; main = 2425.633; forked = 986.504
 INFO: [Common 17-1381] The checkpoint '/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.runs/synth_1/Nexys4DdrUserDemo.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file Nexys4DdrUserDemo_utilization_synth.rpt -pb Nexys4DdrUserDemo_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Nov 26 13:51:43 2023...
+INFO: [Common 17-206] Exiting Vivado at Sun Nov 26 17:01:26 2023...
