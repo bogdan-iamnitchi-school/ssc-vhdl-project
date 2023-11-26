@@ -4,7 +4,7 @@
 <!-- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.                   -->
 <!-- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.   -->
 
-<Project Product="Vivado" Version="7" Minor="63" Path="/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/UART_test/UART_test.xpr">
+<Project Product="Vivado" Version="7" Minor="63" Path="/home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/UART_Bluetooth_test/UART_test.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="71ac72d4524d444682e3090ad3d35612"/>

@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1700935061" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/modul_principal.dcp">
-  <File Type="VDS-TIMINGSUMMARY" Name="modul_principal_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="modul_principal.dcp"/>
   <File Type="RDS-UTIL-PB" Name="modul_principal_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="modul_principal_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="modul_principal_drc_synth.rpt"/>
-  <File Type="RDS-RDS" Name="modul_principal.vds"/>
-  <File Type="REPORTS-TCL" Name="modul_principal_reports.tcl"/>
-  <File Type="VDS-TIMING-PB" Name="modul_principal_timing_summary_synth.pb"/>
   <File Type="PA-TCL" Name="modul_principal.tcl"/>
+  <File Type="RDS-UTIL" Name="modul_principal_utilization_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="modul_principal_reports.tcl"/>
+  <File Type="RDS-RDS" Name="modul_principal.vds"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/imports/UART-Transmision/UART_RX_CNTRL.vhd">

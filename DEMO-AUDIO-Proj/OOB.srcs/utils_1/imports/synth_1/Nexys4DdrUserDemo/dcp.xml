@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<Checkpoint Version="20" Minor="0">
+	<BUILD_NUMBER Name="3865809"/>
+	<FULL_BUILD Name="SW Build 3865809 on Sun May  7 15:04:56 MDT 2023"/>
+	<PRODUCT Name="Vivado v2023.1 (64-bit)"/>
+	<Part Name="xc7a100tcsg324-1"/>
+	<BoardPart Name="digilentinc.com:nexys4_ddr:part0:1.1"/>
+	<Top Name="Nexys4DdrUserDemo"/>
+	<DisableAutoIOBuffers Name="0"/>
+	<OutOfContext Name="0"/>
+	<RunGenerated Name="1"/>
+	<HDPlatform Name="0"/>
+	<XPMLIBRARY Name="XPM_CDC"/>
+	<File Type="VERILOG_STUB" Name="Nexys4DdrUserDemo_stub.v" ModTime="1700929734"/>
+	<File Type="VHDL_STUB" Name="Nexys4DdrUserDemo_stub.vhdl" ModTime="1700929734"/>
+	<File Type="SHAPE" Name="Nexys4DdrUserDemo.shape" ModTime="1700929734"/>
+	<File Type="EDIF" Name="Nexys4DdrUserDemo.edf" ModTime="1700929734"/>
+	<File Type="XN" Name="Nexys4DdrUserDemo.xn" ModTime="1700929734"/>
+	<File Type="INCR" Name="Nexys4DdrUserDemo.incr" ModTime="1700929734"/>
+	<File Type="RDA" Name="Nexys4DdrUserDemo.rda" ModTime="1700929734"/>
+	<File Type="JSON_RDA" Name="Nexys4DdrUserDemo_rda.json" ModTime="1700929734"/>
+	<File Type="WDF" Name="Nexys4DdrUserDemo.wdf" ModTime="1700929734"/>
+	<File Type="SYNTH" Name="Nexys4DdrUserDemo.synth" ModTime="1700929734"/>
+</Checkpoint>
+
