@@ -199,6 +199,9 @@ component PdmSer is
     port(
         clk_i : in std_logic;
         en_i : in std_logic; -- Enable serializing (during playback)
+        btn_d : in    std_logic;
+        btn_c : in    std_logic;
+        
         
         done_o : out std_logic; -- Signaling that data_i is sent
         data_i : in std_logic_vector(C_NR_OF_BITS - 1 downto 0); -- input data
@@ -288,178 +291,10 @@ signal mem_wen          : std_logic;
 signal mem_ub           : std_logic;
 signal mem_lb           : std_logic;
 
-
-
---UART_TX_CTRL control signals
-
-type UART_STATE_TYPE is (RST_REG, IDLE, LD_FIRST, SEND_CHAR, RDY_LOW, WAIT_RDY, LD_SECOND, LD_NEWLINE);
---Current uart state signal
-signal uartState : UART_STATE_TYPE := RST_REG;
-
-signal btnd_debounced : std_logic;
-signal btnc_debounced : std_logic;
-
-signal uartRdy : std_logic;
-signal uartSend : std_logic := '0';
-signal uartData : std_logic_vector (7 downto 0):= "00000000";
-signal uartTX : std_logic;
-
-signal begin_send : std_logic;
-signal done_send_async : std_logic;
-signal data_to_send : std_logic_vector(15 downto 0);
-
-constant RESET_CNTR_MAX : std_logic_vector(17 downto 0) := "110000110101000000";-- 100,000,000 * 0.002 = 200,000 = clk cycles per 2 ms
-signal reset_cntr : std_logic_vector (17 downto 0) := (others=>'0');
-
-signal data_send : std_logic_vector (15 downto 0) := x"6162";
-signal byte_data : std_logic_vector (7 downto 0);
-
---Contains the length of the current string being sent over uart.
-signal BYTE_COUNT : natural := 3;
-signal byte_index : natural := 0;
-signal newline : std_logic_vector (7 downto 0) := x"0A";
-
 ------------------------------------------------------------------------
 -- Module Implementation
 ------------------------------------------------------------------------
 begin
-
-------------------------------------------------------------------------
--- UART_TX
-------------------------------------------------------------------------
-
-    Btnd: Dbncr
-    generic map(
-        NR_OF_CLKS   => 4095
-    )
-    port map(
-      clk_i          => clk_i,
-      sig_i          => btn_d,
-      pls_o          => btnd_debounced
-    );
-    
-    Btnc: Dbncr
-    generic map(
-        NR_OF_CLKS   => 4095
-    )
-    port map(
-      clk_i          => clk_i,
-      sig_i          => btn_c,
-      pls_o          => btnc_debounced
-    );
-
---This counter holds the UART state machine in reset for ~2 milliseconds. This
---will complete transmission of any byte that may have been initiated during 
---FPGA configuration due to the UART_TX line being pulled low, preventing a 
---frame shift error from occuring during the first message.
-process(clk_i)
-begin
-  if (rising_edge(clk_i)) then
-    if ((reset_cntr = RESET_CNTR_MAX) or (uartState /= RST_REG)) then
-      reset_cntr <= (others=>'0');
-    else
-      reset_cntr <= reset_cntr + 1;
-    end if;
-  end if;
-end process;
-
---Next Uart state logic (states described above)
-next_uartState_process : process (clk_i)
-begin
-	if (rising_edge(clk_i)) then
-		if (btnd_debounced = '1') then
-			uartState <= RST_REG;
-		else	
-			case uartState is 
-			when RST_REG =>
-                if (reset_cntr = RESET_CNTR_MAX) then
-                  uartState <= IDLE;
-                end if;
-            when IDLE =>
-                if (btnc_debounced = '1') then
-                  done_send_async <= '0';
-                  uartState <= LD_FIRST;
-                end if;
-			when LD_FIRST =>
-				uartState <= SEND_CHAR;
-			when SEND_CHAR =>
-				uartState <= RDY_LOW;
-			when RDY_LOW =>
-				uartState <= WAIT_RDY;
-			when WAIT_RDY =>
-				if (uartRdy = '1') then
-					if (byte_index = BYTE_COUNT) then
-					    done_send_async <= '1';
-					    begin_send <= '0';
-						uartState <= IDLE;
-					elsif (byte_index = BYTE_COUNT-1) then
-					    uartState <= LD_NEWLINE;
-					else
-						uartState <= LD_SECOND;
-					end if;
-				end if;
-			when LD_SECOND =>
-				uartState <= SEND_CHAR;
-		    when LD_NEWLINE =>
-				uartState <= SEND_CHAR;
-			when others=> --should never be reached
-				uartState <= RST_REG;
-			end case;
-		end if ;
-	end if;
-end process;
-
---Loads the sendStr and strEnd signals when a LD state is
---is reached.
-string_load_process : process (clk_i)
-begin
-	if (rising_edge(clk_i)) then
-		if (uartState = LD_FIRST) then
-			byte_data <= data_send(15 downto 8);
-		elsif (uartState = LD_SECOND) then
-            byte_data <= data_send(7 downto 0);
-        else
-            byte_data <= newline;
-		end if;
-	end if;
-end process;
-
---Conrols the strIndex signal so that it contains the index
---of the next character that needs to be sent over uart
-char_count_process : process (clk_i)
-begin
-	if (rising_edge(clk_i)) then
-		if (uartState = IDLE) then
-			byte_index <= 0;
-		elsif (uartState = SEND_CHAR) then
-			byte_index <= byte_index + 1;
-		end if;
-	end if;
-end process;
-
---Controls the UART_TX_CTRL signals
-char_load_process : process (clk_i)
-begin
-	if (rising_edge(clk_i)) then
-		if (uartState = SEND_CHAR) then
-			uartSend <= '1';
-			uartData <= byte_data;
-		else
-			uartSend <= '0';
-		end if;
-	end if;
-end process;
-
---Component used to send a byte of data over a UART line.
-Inst_UART_TX_CTRL: entity WORK.UART_TX_CTRL port map(
-		SEND => uartSend,
-		DATA => uartData,
-		CLK => clk_i,
-		READY => uartRdy,
-		UART_TX => uartTX 
-	);
-
-tx_pmodbt <= uartTX;
 
 ------------------------------------------------------------------------
 -- DEBOUNCER
@@ -583,6 +418,8 @@ tx_pmodbt <= uartTX;
    port map(
       clk_i                => clk_i,
       en_i                 => en_ser,
+      btn_d                => btn_d,
+      btn_c                => btn_c,
       done_o               => done_async_ser,
       data_i               => data_serr,
       pwm_audio_o          => pwm_audio_o,
@@ -731,4 +568,3 @@ tx_pmodbt <= uartTX;
 
    
 end Behavioral;
-

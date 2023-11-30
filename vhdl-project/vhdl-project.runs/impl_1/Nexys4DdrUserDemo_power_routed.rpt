@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.1 (lin64) Build 3865809 Sun May  7 15:04:56 MDT 2023
-| Date             : Sun Nov 26 17:02:42 2023
+| Date             : Wed Nov 29 12:10:25 2023
 | Host             : VivoBook running 64-bit Ubuntu 22.04.3 LTS
 | Command          : report_power -file Nexys4DdrUserDemo_power_routed.rpt -pb Nexys4DdrUserDemo_power_summary_routed.pb -rpx Nexys4DdrUserDemo_power_routed.rpx
 | Design           : Nexys4DdrUserDemo
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 1.108        |
+| Total On-Chip Power (W)  | 1.114        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 1.001        |
+| Dynamic (W)              | 1.006        |
 | Device Static (W)        | 0.108        |
 | Effective TJA (C/W)      | 4.6          |
 | Max Ambient (C)          | 79.9         |
@@ -53,21 +53,21 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.019 |       46 |       --- |             --- |
-| Slice Logic              |     0.006 |     9172 |       --- |             --- |
-|   LUT as Logic           |     0.005 |     3546 |     63400 |            5.59 |
-|   Register               |    <0.001 |     3705 |    126800 |            2.92 |
+| Slice Logic              |     0.006 |     9165 |       --- |             --- |
+|   LUT as Logic           |     0.005 |     3565 |     63400 |            5.62 |
+|   Register               |    <0.001 |     3699 |    126800 |            2.92 |
 |   LUT as Distributed RAM |    <0.001 |      354 |     19000 |            1.86 |
-|   CARRY4                 |    <0.001 |      191 |     15850 |            1.21 |
+|   CARRY4                 |    <0.001 |      184 |     15850 |            1.16 |
 |   LUT as Shift Register  |    <0.001 |       18 |     19000 |            0.09 |
 |   F7/F8 Muxes            |    <0.001 |       32 |     63400 |            0.05 |
-|   Others                 |     0.000 |      138 |       --- |             --- |
-| Signals                  |     0.007 |     7274 |       --- |             --- |
+|   Others                 |     0.000 |      136 |       --- |             --- |
+| Signals                  |     0.007 |     7259 |       --- |             --- |
 | MMCM                     |     0.218 |        2 |         6 |           33.33 |
 | PLL                      |     0.110 |        1 |         6 |           16.67 |
-| I/O                      |     0.538 |      128 |       210 |           60.95 |
+| I/O                      |     0.543 |      104 |       210 |           49.52 |
 | PHASER                   |     0.102 |       14 |       --- |             --- |
 | Static Power             |     0.108 |          |           |                 |
-| Total                    |     1.108 |          |           |                 |
+| Total                    |     1.114 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -189,11 +189,12 @@ Table of Contents
 +-------------------+-----------+
 | Name              | Power (W) |
 +-------------------+-----------+
-| Nexys4DdrUserDemo |     1.001 |
-|   Inst_Audio      |     0.879 |
-|     DDR           |     0.874 |
-|       Inst_DDR    |     0.873 |
+| Nexys4DdrUserDemo |     1.006 |
+|   Inst_Audio      |     0.881 |
+|     DDR           |     0.876 |
+|       Inst_DDR    |     0.875 |
 |     RAM           |     0.001 |
+|     Serializer    |     0.002 |
 |   Inst_ClkGen     |     0.107 |
 |     inst          |     0.107 |
 +-------------------+-----------+

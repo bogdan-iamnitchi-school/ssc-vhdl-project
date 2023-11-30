@@ -90,11 +90,11 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib {
-  /home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/UART-Transmision/UART_TX_CTRL.vhd
   /home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/AudioDemo.vhd
   /home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Dbncr.vhd
   /home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/LedBar.vhd
   /home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/PdmDes.vhd
+  /home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/UART-Transmision/UART_TX_CTRL.vhd
   /home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/PdmSer.vhd
   /home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/Ram2Ddr.vhd
   /home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.srcs/sources_1/imports/hdl/RamCntrl.vhd

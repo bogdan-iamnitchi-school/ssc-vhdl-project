@@ -3,12 +3,12 @@
 # SW Build 3865809 on Sun May  7 15:04:56 MDT 2023
 # IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
 # SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
-# Start of session at: Sun Nov 26 16:59:56 2023
-# Process ID: 370140
+# Start of session at: Wed Nov 29 12:08:16 2023
+# Process ID: 541421
 # Current directory: /home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.runs/synth_1
 # Command line: vivado -log Nexys4DdrUserDemo.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Nexys4DdrUserDemo.tcl
 # Log file: /home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.runs/synth_1/Nexys4DdrUserDemo.vds
 # Journal file: /home/bogdan/Facultate/AN3/SSC/Project/ssc-vhdl-project/vhdl-project/vhdl-project.runs/synth_1/vivado.jou
-# Running On: VivoBook, OS: Linux, CPU Frequency: 4151.493 MHz, CPU Physical cores: 4, Host memory: 12376 MB
+# Running On: VivoBook, OS: Linux, CPU Frequency: 4480.067 MHz, CPU Physical cores: 4, Host memory: 12376 MB
 #-----------------------------------------------------------
 source Nexys4DdrUserDemo.tcl -notrace

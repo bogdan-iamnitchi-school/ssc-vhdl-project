@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1701010792" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/Nexys4DdrUserDemo.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1701252494" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/Nexys4DdrUserDemo.dcp">
   <File Type="VDS-TIMINGSUMMARY" Name="Nexys4DdrUserDemo_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="Nexys4DdrUserDemo.dcp"/>
   <File Type="RDS-UTIL-PB" Name="Nexys4DdrUserDemo_utilization_synth.pb"/>
@@ -26,14 +26,6 @@
         <Attr Name="ImportTime" Val="1700911074"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/imports/UART-Transmision/UART_TX_CTRL.vhd">
-      <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../UART_Bluetooth_test/UART_test.srcs/sources_1/imports/UART-Transmision/UART_TX_CTRL.vhd"/>
-        <Attr Name="ImportTime" Val="1700935807"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
@@ -65,6 +57,14 @@
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../Nexys-4-DDR-OOB/src/hdl/PdmDes.vhd"/>
         <Attr Name="ImportTime" Val="1700750307"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/UART-Transmision/UART_TX_CTRL.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../UART_Bluetooth_test/UART_test.srcs/sources_1/imports/UART-Transmision/UART_TX_CTRL.vhd"/>
+        <Attr Name="ImportTime" Val="1700935807"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
@@ -176,9 +176,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Flow_RuntimeOptimized" Flow="Vivado Synthesis 2023">
-      <Desc>Trades off Performance and Area for better Runtime.</Desc>
-    </StratHandle>
+    <StratHandle Name="Flow_RuntimeOptimized" Flow="Vivado Synthesis 2023"/>
     <Step Id="synth_design">
       <Option Id="FsmExtraction">0</Option>
       <Option Id="Directive">0</Option>

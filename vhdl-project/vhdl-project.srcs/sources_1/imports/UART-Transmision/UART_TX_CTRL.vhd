@@ -43,7 +43,7 @@ use ieee.math_real.all;
 
 entity UART_TX_CTRL is
     generic (
-        BAUD                : positive := 9600;
+        BAUD                : positive := 115_200;
         CLOCK_FREQUENCY     : positive := 100_000_000
     );
     Port ( CLK : in  STD_LOGIC;

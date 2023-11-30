@@ -76,19 +76,6 @@ entity Nexys4DdrUserDemo is
       disp_an_o      : out std_logic_vector(7 downto 0);
       -- leds
       led_o          : out std_logic_vector(15 downto 0);
-      -- RGB leds
-      rgb1_red_o     : out std_logic;
-      rgb1_green_o   : out std_logic;
-      rgb1_blue_o    : out std_logic;
-      rgb2_red_o     : out std_logic;
-      rgb2_green_o   : out std_logic;
-      rgb2_blue_o    : out std_logic;
-      -- VGA display
-      vga_hs_o       : out std_logic;
-      vga_vs_o       : out std_logic;
-      vga_red_o      : out std_logic_vector(3 downto 0);
-      vga_blue_o     : out std_logic_vector(3 downto 0);
-      vga_green_o    : out std_logic_vector(3 downto 0);
       -- PDM microphone
       pdm_clk_o      : out std_logic;
       pdm_data_i     : in  std_logic;
@@ -96,28 +83,6 @@ entity Nexys4DdrUserDemo is
       -- PWM audio
       pwm_audio_o    : inout std_logic;
       pwm_sdaudio_o  : out std_logic;
-		-- Temperature sensor
-		tmp_scl        : inout std_logic;
-		tmp_sda        : inout std_logic;
---		tmp_int        : in std_logic; -- Not used in this project
---		tmp_ct         : in std_logic; -- Not used in this project
-      -- SPI Interface signals for the ADXL362 accelerometer
-      sclk           : out STD_LOGIC;
-      mosi           : out STD_LOGIC;
-      miso           : in STD_LOGIC;
-      ss             : out STD_LOGIC;
-      -- PS2 interface signals
-      ps2_clk        : inout std_logic;
-      ps2_data       : inout std_logic;
-      
-      -- Debug output signals
---      SCLK_DBG       : out STD_LOGIC;
---      MOSI_DBG       : out STD_LOGIC;
---      MISO_DBG       : out STD_LOGIC;
---      SS_DBG         : out STD_LOGIC;
-      
---      PS2C_DBG       : out std_logic;
---      PS2D_DBG       : out std_logic;
       
       -- DDR2 interface signals
       ddr2_addr      : out   std_logic_vector(12 downto 0);

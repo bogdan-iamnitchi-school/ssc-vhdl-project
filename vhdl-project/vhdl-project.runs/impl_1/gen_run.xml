@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1701010792">
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1701252494">
   <File Type="ROUTE-RQS-RPT" Name="route_report_qor_suggestions_0.rpt"/>
   <File Type="POSTROUTE-PHYSOPT-RQS" Name="Nexys4DdrUserDemo_postroute_physopted.rqs"/>
   <File Type="ROUTE-RQS" Name="Nexys4DdrUserDemo_routed.rqs"/>
@@ -104,14 +104,6 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/UART-Transmision/UART_TX_CTRL.vhd">
-      <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../UART_Bluetooth_test/UART_test.srcs/sources_1/imports/UART-Transmision/UART_TX_CTRL.vhd"/>
-        <Attr Name="ImportTime" Val="1700935807"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/imports/hdl/AudioDemo.vhd">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../Nexys-4-DDR-OOB/src/hdl/AudioDemo.vhd"/>
@@ -140,6 +132,14 @@
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../Nexys-4-DDR-OOB/src/hdl/PdmDes.vhd"/>
         <Attr Name="ImportTime" Val="1700750307"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/UART-Transmision/UART_TX_CTRL.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../UART_Bluetooth_test/UART_test.srcs/sources_1/imports/UART-Transmision/UART_TX_CTRL.vhd"/>
+        <Attr Name="ImportTime" Val="1700935807"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
@@ -251,9 +251,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Flow_Quick" Flow="Vivado Implementation 2023">
-      <Desc>Fastest possible runtime, all timing-driven behavior disabled. Useful for utilization estimation.</Desc>
-    </StratHandle>
+    <StratHandle Name="Flow_Quick" Flow="Vivado Implementation 2023"/>
     <Step Id="init_design"/>
     <Step Id="opt_design">
       <Option Id="Directive">4</Option>
