@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private BluetoothSocket mBTSocket = null; // bi-directional client-to-client data path
 
     //-----------------------------------------------------------------
-    private Button playBtn, pauseBtn, stopBtn, recordBtn;
+    private Button playBtn, pauseBtn, resetBtn, recordBtn;
     private SeekBar seekBar;
     private MediaPlayer mediaPlayer;
     private MediaRecorder mediaRecorder;
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         recordBtn = (Button) findViewById(R.id.record_btn);
         playBtn = (Button) findViewById(R.id.play_btn);
         pauseBtn = (Button) findViewById(R.id.pause_btn);
-        stopBtn = (Button) findViewById(R.id.stop_btn);
+        resetBtn = (Button) findViewById(R.id.reset_btn);
     }
 
     protected void solveSeekBar() {
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer.pause();
     }
 
-    public void stopBtnSolve() {
+    public void solveRecord() {
         mediaRecorder.stop();
         mediaRecorder.release();
         mediaRecorder = null;
@@ -177,9 +177,18 @@ public class MainActivity extends AppCompatActivity {
         }
         Toast.makeText(this, "Recording is stopped", Toast.LENGTH_SHORT).show();
     }
-    public void stopBtnPressed(View view) {
-        //stopBtnSolve();
-        stopTimer();
+
+    public void resetBtnPressed(View view) {
+        if (mediaRecorder != null) {
+            mediaRecorder.stop();
+            mediaRecorder.release();
+            mediaRecorder = null;
+        }
+        if (timerRunning) {
+            stopTimer();
+        }
+
+        Toast.makeText(this, "Recording reset", Toast.LENGTH_SHORT).show();
     }
 
     private boolean isMicrophonePresent() {
@@ -190,13 +199,16 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     }
-
     private void getMicrophonePermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.RECORD_AUDIO}, MICROPHONE_PERMISSION_CODE);
         }
     }
-
+    protected void solvePermision() {
+        if (isMicrophonePresent()) {
+            getMicrophonePermission();
+        }
+    }
     private String getRecordingFilePath() {
         ContextWrapper contextWrapper = new ContextWrapper(getApplicationContext());
 
@@ -205,17 +217,10 @@ public class MainActivity extends AppCompatActivity {
         return file.getPath();
     }
 
-    protected void solveRecordPermision() {
-        if (isMicrophonePresent()) {
-            getMicrophonePermission();
-        }
-    }
-
     protected void initCoundownTimer () {
         countdownText = (TextView) findViewById(R.id.countdown_text);
 
     }
-
     public void startTimer () {
         countDownTimer = new CountDownTimer(timeLeftMilliseconds, 1000) {
             @Override
@@ -227,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 stopTimer();
-
+                solveRecord();
             }
         }.start();
 
@@ -240,8 +245,6 @@ public class MainActivity extends AppCompatActivity {
 
         timeLeftMilliseconds = TIME_TO_RECORD;
         updateTimerText();
-
-        stopBtnSolve();
     }
 
     public void updateTimerText() {
@@ -261,9 +264,7 @@ public class MainActivity extends AppCompatActivity {
 
         initButtonsPlayer();
         initCoundownTimer();
-        solveRecordPermision();
-
-
+        solvePermision();
 
         //---------------------------------------------------------------
 
