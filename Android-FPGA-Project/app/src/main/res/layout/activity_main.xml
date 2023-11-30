@@ -10,12 +10,35 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.mcuhq.fpgaProject.MainActivity">
 
-    <SeekBar
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="30dp"
-        android:paddingBottom="10dp"
-        android:id="@+id/seek_bar"/>
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/countdown_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:05"
+            android:textSize="40dp"
+            android:textColor="#000000"/>
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Record"
+            android:id="@+id/record_btn"
+            android:onClick="recordBtnPressed"/>
+
+    </LinearLayout>
+
+    <SeekBar
+        android:id="@+id/seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,35 +49,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Play"
-            android:id="@+id/play_btn"/>
+            android:id="@+id/play_btn"
+            android:onClick="playBtnPressed"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pause"
-            android:id="@+id/pause_btn"/>
+            android:id="@+id/pause_btn"
+            android:onClick="pauseBtnPressed"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Stop"
-            android:id="@+id/stop_btn"/>
-
-
+            android:id="@+id/stop_btn"
+            android:onClick="stopBtnPressed"/>
 
     </LinearLayout>
-
-    <CheckBox
-        android:id="@+id/checkbox_led_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:checked="false"
-        android:scaleX="1.7"
-        android:scaleY="1.7"
-        android:text="Toggle LED"
-        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"

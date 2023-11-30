@@ -6,14 +6,19 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
+import android.media.MediaRecorder;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -22,12 +27,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
@@ -53,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
     private Button mListPairedDevicesBtn;
     private Button mDiscoverBtn;
     private ListView mDevicesListView;
-    private CheckBox mLED1;
 
     private BluetoothAdapter mBTAdapter;
     private Set<BluetoothDevice> mPairedDevices;
@@ -63,44 +67,35 @@ public class MainActivity extends AppCompatActivity {
     private ConnectedThread mConnectedThread; // bluetooth background worker thread to send and receive data
     private BluetoothSocket mBTSocket = null; // bi-directional client-to-client data path
 
-
-    private Button playBtn, pauseBtn, stopBtn;
+    //-----------------------------------------------------------------
+    private Button playBtn, pauseBtn, stopBtn, recordBtn;
     private SeekBar seekBar;
     private MediaPlayer mediaPlayer;
+    private MediaRecorder mediaRecorder;
+    private TextView countdownText;
+    private CountDownTimer countDownTimer;
+    private long timeLeftMilliseconds = TIME_TO_RECORD;
+    private boolean timerRunning;
+    private static int MICROPHONE_PERMISSION_CODE = 200;
+    private static int TIME_TO_RECORD = 5 * 1000;
 
-    protected void solvePlayer() {
+    //------------------------------------------------------------------
+
+
+    protected void initButtonsPlayer() {
+        recordBtn = (Button) findViewById(R.id.record_btn);
         playBtn = (Button) findViewById(R.id.play_btn);
         pauseBtn = (Button) findViewById(R.id.pause_btn);
         stopBtn = (Button) findViewById(R.id.stop_btn);
+    }
+
+    protected void solveSeekBar() {
+
         seekBar = (SeekBar) findViewById(R.id.seek_bar);
-        mediaPlayer = MediaPlayer.create(this, R.raw.song);
-
-        playBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mediaPlayer.start();
-            }
-        });
-
-        pauseBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mediaPlayer.pause();
-            }
-        });
-
-        stopBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mediaPlayer.stop();
-            }
-        });
 
         seekBar.setMax(mediaPlayer.getDuration());
 
         final Handler handler = new Handler();
-
-// Update SeekBar every 900 milliseconds
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -129,12 +124,149 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void recordBtnPressed(View view) {
+
+        try {
+            mediaRecorder = new MediaRecorder();
+            mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+            mediaRecorder.setOutputFile(getRecordingFilePath());
+            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+            mediaRecorder.prepare();
+            mediaRecorder.start();
+
+            Toast.makeText(this, "Recording is started", Toast.LENGTH_SHORT).show();
+            startTimer();
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void playBtnPressed(View view) {
+        try {
+
+            mediaPlayer.start();
+
+            Toast.makeText(this, "Recording is playing", Toast.LENGTH_SHORT).show();
+            solveSeekBar();
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void pauseBtnPressed(View view) {
+        mediaPlayer.pause();
+    }
+
+    public void stopBtnSolve() {
+        mediaRecorder.stop();
+        mediaRecorder.release();
+        mediaRecorder = null;
+
+        try {
+            mediaPlayer = new MediaPlayer();
+            mediaPlayer.setDataSource(getRecordingFilePath());
+            mediaPlayer.prepare();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        Toast.makeText(this, "Recording is stopped", Toast.LENGTH_SHORT).show();
+    }
+    public void stopBtnPressed(View view) {
+        //stopBtnSolve();
+        stopTimer();
+    }
+
+    private boolean isMicrophonePresent() {
+        if (this.getPackageManager().hasSystemFeature(PackageManager.FEATURE_MICROPHONE)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    private void getMicrophonePermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.RECORD_AUDIO}, MICROPHONE_PERMISSION_CODE);
+        }
+    }
+
+    private String getRecordingFilePath() {
+        ContextWrapper contextWrapper = new ContextWrapper(getApplicationContext());
+
+        File musicDirectory = contextWrapper.getExternalFilesDir(Environment.DIRECTORY_MUSIC);
+        File file = new File(musicDirectory, "testRecordingFile" + ".mp3");
+        return file.getPath();
+    }
+
+    protected void solveRecordPermision() {
+        if (isMicrophonePresent()) {
+            getMicrophonePermission();
+        }
+    }
+
+    protected void initCoundownTimer () {
+        countdownText = (TextView) findViewById(R.id.countdown_text);
+
+    }
+
+    public void startTimer () {
+        countDownTimer = new CountDownTimer(timeLeftMilliseconds, 1000) {
+            @Override
+            public void onTick(long l) {
+                timeLeftMilliseconds = l;
+                updateTimerText();
+            }
+
+            @Override
+            public void onFinish() {
+                stopTimer();
+
+            }
+        }.start();
+
+        timerRunning = true;
+    }
+
+    public void stopTimer () {
+        countDownTimer.cancel();
+        timerRunning = false;
+
+        timeLeftMilliseconds = TIME_TO_RECORD;
+        updateTimerText();
+
+        stopBtnSolve();
+    }
+
+    public void updateTimerText() {
+        int seconds = (int) timeLeftMilliseconds / 1000;
+
+        String timeLeftText = "00" + ":" + "0" + seconds;
+
+        countdownText.setText(timeLeftText);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        solvePlayer();
+        //--------------------------------------------------------------
+
+        initButtonsPlayer();
+        initCoundownTimer();
+        solveRecordPermision();
+
+
+
+        //---------------------------------------------------------------
+
 
         mBluetoothStatus = (TextView)findViewById(R.id.bluetooth_status);
         mReadBuffer = (TextView) findViewById(R.id.read_buffer);
@@ -142,7 +274,6 @@ public class MainActivity extends AppCompatActivity {
         mOffBtn = (Button)findViewById(R.id.off);
         mDiscoverBtn = (Button)findViewById(R.id.discover);
         mListPairedDevicesBtn = (Button)findViewById(R.id.paired_btn);
-        mLED1 = (CheckBox)findViewById(R.id.checkbox_led_1);
 
         mBTArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         mBTAdapter = BluetoothAdapter.getDefaultAdapter(); // get a handle on the bluetooth radio
@@ -181,15 +312,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),getString(R.string.sBTdevNF),Toast.LENGTH_SHORT).show();
         }
         else {
-
-            mLED1.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v){
-                    if(mConnectedThread != null) //First check to make sure thread created
-                        mConnectedThread.write("1");
-                }
-            });
-
 
             mScanBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
