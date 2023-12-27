@@ -1,4 +1,0 @@
-vhdl xil_defaultlib  \
-"../../../../../src/ip/Square_Root/sim/Square_Root.vhd" \
-
-nosort
