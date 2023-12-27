@@ -1,0 +1,6 @@
+xpm_cdc.sv,systemverilog,xpm,D:/Programe/Vivado/Vivado/2022.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv,incdir="../../../../../src/ip/ClkGen"
+xpm_memory.sv,systemverilog,xpm,D:/Programe/Vivado/Vivado/2022.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv,incdir="../../../../../src/ip/ClkGen"
+xpm_VCOMP.vhd,vhdl,xpm,D:/Programe/Vivado/Vivado/2022.2/data/ip/xpm/xpm_VCOMP.vhd,incdir="../../../../../src/ip/ClkGen"
+ClkGen_clk_wiz.v,verilog,xil_defaultlib,../../../../../src/ip/ClkGen/ClkGen_clk_wiz.v,incdir="../../../../../src/ip/ClkGen"
+ClkGen.v,verilog,xil_defaultlib,../../../../../src/ip/ClkGen/ClkGen.v,incdir="../../../../../src/ip/ClkGen"
+glbl.v,Verilog,xil_defaultlib,glbl.v

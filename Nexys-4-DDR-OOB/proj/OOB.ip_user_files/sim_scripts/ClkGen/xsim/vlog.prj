@@ -1,0 +1,7 @@
+verilog xil_defaultlib --include "../../../../../src/ip/ClkGen" \
+"../../../../../src/ip/ClkGen/ClkGen_clk_wiz.v" \
+"../../../../../src/ip/ClkGen/ClkGen.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort

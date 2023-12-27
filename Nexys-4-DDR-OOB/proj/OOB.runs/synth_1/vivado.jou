@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Wed Nov  8 21:03:51 2023
+# Process ID: 4292
+# Current directory: D:/FACULTATE/An3/SSC/GIPO-ADVANCED/Nexys-4-DDR-OOB/proj/OOB.runs/synth_1
+# Command line: vivado.exe -log Nexys4DdrUserDemo.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Nexys4DdrUserDemo.tcl
+# Log file: D:/FACULTATE/An3/SSC/GIPO-ADVANCED/Nexys-4-DDR-OOB/proj/OOB.runs/synth_1/Nexys4DdrUserDemo.vds
+# Journal file: D:/FACULTATE/An3/SSC/GIPO-ADVANCED/Nexys-4-DDR-OOB/proj/OOB.runs/synth_1\vivado.jou
+# Running On: bogdan, OS: Windows, CPU Frequency: 1992 MHz, CPU Physical cores: 4, Host memory: 12729 MB
+#-----------------------------------------------------------
+source Nexys4DdrUserDemo.tcl -notrace

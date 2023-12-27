@@ -1,0 +1,2 @@
+Square_Root.vhd,vhdl,xil_defaultlib,../../../../../src/ip/Square_Root/sim/Square_Root.vhd,
+glbl.v,Verilog,xil_defaultlib,glbl.v

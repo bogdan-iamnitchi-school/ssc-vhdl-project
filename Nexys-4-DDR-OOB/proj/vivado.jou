@@ -1,0 +1,15 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Wed Nov 22 11:16:23 2023
+# Process ID: 13456
+# Current directory: D:/FACULTATE/An3/SSC/Project/Nexys-4-DDR-OOB/proj
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent12400 D:\FACULTATE\An3\SSC\Project\Nexys-4-DDR-OOB\proj\OOB.xpr
+# Log file: D:/FACULTATE/An3/SSC/Project/Nexys-4-DDR-OOB/proj/vivado.log
+# Journal file: D:/FACULTATE/An3/SSC/Project/Nexys-4-DDR-OOB/proj\vivado.jou
+# Running On: bogdan, OS: Windows, CPU Frequency: 1992 MHz, CPU Physical cores: 4, Host memory: 12729 MB
+#-----------------------------------------------------------
+start_gui
+open_project D:/FACULTATE/An3/SSC/Project/Nexys-4-DDR-OOB/proj/OOB.xpr
+update_compile_order -fileset sources_1
