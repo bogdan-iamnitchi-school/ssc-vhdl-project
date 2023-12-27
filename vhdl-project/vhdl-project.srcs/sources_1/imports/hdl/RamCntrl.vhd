@@ -20,6 +20,9 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
+----------------------------------------------------------------------------------
+-- Entity
+---------------------------------------------------------------------------------- 
 entity RamCntrl is
    generic (
       -- read/write cycle (ns)
@@ -51,14 +54,17 @@ entity RamCntrl is
    );
 end RamCntrl;
 
+
+----------------------------------------------------------------------------------
+-- Architecture
+---------------------------------------------------------------------------------- 
 architecture Behavioral of RamCntrl is
 
 ------------------------------------------------------------------------
 -- Local Type Declarations
 ------------------------------------------------------------------------
 -- State machine state names
-type States is(Idle, AssertCen, AssertOenWen, Waitt, Deassert, SendData,
-               Ack, Done);
+type States is(Idle, AssertCen, AssertOenWen, Waitt, Deassert, SendData, Ack, Done);
 
 ------------------------------------------------------------------------
 -- Signal Declarations
@@ -93,7 +99,7 @@ signal CntCycleTime: integer range 0 to 255;
 signal RstInt : std_logic;
 
 ------------------------------------------------------------------------
--- Module Implementation
+-- Begin
 ------------------------------------------------------------------------
 begin
    

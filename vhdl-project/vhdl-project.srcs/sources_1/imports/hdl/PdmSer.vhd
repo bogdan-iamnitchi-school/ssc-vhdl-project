@@ -1,43 +1,14 @@
+
 ----------------------------------------------------------------------------------
-----------------------------------------------------------------------------
--- Author:  Mihaita Nagy
---          Copyright 2014 Digilent, Inc.
-----------------------------------------------------------------------------
--- 
--- Create Date:    14:25:21 04/02/2013 
--- Design Name: 
--- Module Name:    PdmSer - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
---       This module represents the serializer for the audio output data. The module generates
---    an internal clk_int signal, having the same frequency as the M_CLK signal sent to the
---    ADMP421 Microphone (see description of the PdmDes component). Data is sent to the audio line
---    at the positive edge of this internal clk signal. 
---       The audio data is filtered on the board by the Sallen-Key Butterworth Low Pass 4th Order Filter
---    and sent to the audio output.
---
---
--- Revision: 
--- Revision 0.01 - File Created
--- Additional Comments: 
---
-----------------------------------------------------------------------------------
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
+----------------------------------------------------------------------------------
+-- Entity
+----------------------------------------------------------------------------------  
 entity PdmSer is
    generic(
       C_NR_OF_BITS : integer := 16;
@@ -61,12 +32,15 @@ entity PdmSer is
    );
 end PdmSer;
 
+
+----------------------------------------------------------------------------------
+-- Architecture
+----------------------------------------------------------------------------------  
 architecture Behavioral of PdmSer is
 
-
-
---UART_TX_CTRL control signals
-
+----------------------------------------------------------------------------------
+-- UART_TX_CTRL control signals
+----------------------------------------------------------------------------------  
 type UART_STATE_TYPE is (RST_REG, IDLE, LD_FIRST, SEND_CHAR, RDY_LOW, WAIT_RDY, LD_SECOND, LD_NEWLINE);
 --Current uart state signal
 signal uartState : UART_STATE_TYPE := RST_REG;
@@ -94,10 +68,8 @@ signal BYTE_COUNT : natural := 3;
 signal byte_index : natural := 0;
 signal newline : std_logic_vector (7 downto 0) := x"0A";
 
-
-
 ------------------------------------------------------------------------
--- Signal Declarations
+-- Serializer signals
 ------------------------------------------------------------------------
 -- divider to create clk_int
 signal cnt_clk : integer range 0 to 255 := 0;
@@ -122,19 +94,14 @@ signal tx_ready: std_logic :='0';
 signal tx_data: std_logic_vector (7 downto 0) := x"61";
 
 ------------------------------------------------------------------------
--- Module Implementation
+-- Begin
 ------------------------------------------------------------------------
 begin
 
-
-------------------------------------------------------------------------
--- UART_TX
-------------------------------------------------------------------------
-
+    ------------------------------------------------------------------------
+    -- UART_TX
+    ------------------------------------------------------------------------
     Btnd: entity WORK.Dbncr
-    generic map(
-        NR_OF_CLKS   => 4095
-    )
     port map(
       clk_i          => clk_i,
       sig_i          => btn_d,
@@ -142,9 +109,6 @@ begin
     );
     
     Btnc: entity WORK.Dbncr
-    generic map(
-        NR_OF_CLKS   => 4095
-    )
     port map(
       clk_i          => clk_i,
       sig_i          => btn_c,
@@ -152,9 +116,7 @@ begin
     );
 
     --This counter holds the UART state machine in reset for ~2 milliseconds. This
-    --will complete transmission of any byte that may have been initiated during 
-    --FPGA configuration due to the UART_TX line being pulled low, preventing a 
-    --frame shift error from occuring during the first message.
+    --will complete transmission of any byte that may have been initiated
     process(clk_i)
     begin
       if (rising_edge(clk_i)) then
@@ -166,7 +128,7 @@ begin
       end if;
     end process;
     
-    --Next Uart state logic (states described above)
+    --Next Uart state logic
     next_uartState_process : process (clk_i)
     begin
         if (rising_edge(clk_i)) then
@@ -202,14 +164,14 @@ begin
                     uartState <= SEND_CHAR;
                 when LD_NEWLINE =>
                     uartState <= SEND_CHAR;
-                when others=> --should never be reached
+                when others =>
                     uartState <= RST_REG;
                 end case;
             end if ;
         end if;
     end process;
     
-    --Loads the sendStr and strEnd signals when a LD state is
+    --Loads the data(7,0) / data(15,8) signals when a LD First/Second is
     --is reached.
     string_load_process : process (clk_i)
     begin
@@ -224,8 +186,8 @@ begin
         end if;
     end process;
     
-    --Conrols the strIndex signal so that it contains the index
-    --of the next character that needs to be sent over uart
+    --Conrols the byte_index signal so that it contains the index
+    --of the next sample that needs to be sent over uart
     char_count_process : process (clk_i)
     begin
         if (rising_edge(clk_i)) then
@@ -259,14 +221,12 @@ begin
             UART_TX => uartTX 
         );
     
+    -- output the data to the module
     tx_pmodbt <= uartTX;
     
-
-
 ------------------------------------------------------------------------
--- LOGIC
+-- SERIALIZER
 ------------------------------------------------------------------------
-
 
    -- Register en_i
    SYNC: process(clk_i)
@@ -276,7 +236,7 @@ begin
       end if;
    end process SYNC;
    
--- Count the number of sampled bits
+   -- Count the number of sampled bits
    CNT: process(clk_i) begin
       if rising_edge(clk_i) then
          if en_int = '0' then
@@ -293,7 +253,7 @@ begin
       end if;
    end process CNT;
    
--- Generate done_o when the number of bits are serialized
+    -- Generate done_o when the number of bits are serialized
    process(clk_i)
    begin
       if rising_edge(clk_i) then
@@ -309,9 +269,9 @@ begin
    
    done_o <= done_int;
    
-------------------------------------------------------------------------
--- Serializer
-------------------------------------------------------------------------
+   ------------------------------------------------------------------------
+   -- Serializer
+   ------------------------------------------------------------------------
    SHFT_OUT: process(clk_i)
    begin
       if rising_edge(clk_i) then
@@ -328,7 +288,7 @@ begin
    -- output the serial pdm data
    pwm_audio_o <= '0' when pdm_s_tmp(C_NR_OF_BITS-1) = '0' else 'Z';
 
--- Generate the internal PDM Clock
+   -- Generate the internal PDM Clock
    CLK_CNT: process(clk_i)
    begin
       if rising_edge(clk_i) then

@@ -37,4 +37,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log Nexys4DdrUserDemo.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Nexys4DdrUserDemo.tcl
+EAStep vivado -log Main.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Main.tcl

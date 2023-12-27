@@ -7,4 +7,4 @@
 # Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 #
 
-vivado -log Nexys4DdrUserDemo.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source Nexys4DdrUserDemo.tcl -notrace
+vivado -log Main.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source Main.tcl -notrace

@@ -39,6 +39,6 @@ EAStep()
 
 # pre-commands:
 /bin/touch .init_design.begin.rst
-EAStep vivado -log Nexys4DdrUserDemo.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source Nexys4DdrUserDemo.tcl -notrace
+EAStep vivado -log Main.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source Main.tcl -notrace
 
 

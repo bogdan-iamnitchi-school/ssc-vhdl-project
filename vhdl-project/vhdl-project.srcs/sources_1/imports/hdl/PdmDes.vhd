@@ -1,41 +1,14 @@
+
 ----------------------------------------------------------------------------------
-----------------------------------------------------------------------------
--- Author:  Mihaita Nagy
---          Copyright 2014 Digilent, Inc.
-----------------------------------------------------------------------------
--- 
--- Create Date:    14:24:36 04/02/2013 
--- Design Name: 
--- Module Name:    PdmDes - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description:
---       This module represents the deserializer of the microphone data. The module generates
---    the pdm_m_clk_o signal to the ADMP421 Microphone (M_CLK) and data is read on the positive
---    edge of this signal.
---
---       Then the module deserializes the signal on 16 bits when en_i = '1' (it means that recoding
---    is going on)
---
---       The module also generates the pdm_clk_rising_o signal, that is active when the positive edge of the
---    pdm_m_clk_o signal occures. This signal is used in the VGA controller, the MicDisplay component to
---    display audio data on the screen. The signal is two system clock period length, in order to make it
---    easier the synchronizing with the VGA clock domain (108MHz)
---
--- Revision: 
--- Revision 0.01 - File Created
--- Additional Comments: 
---
-----------------------------------------------------------------------------------
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
-------------------------------------------------------------------------
--- Module Declaration
-------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+-- Entity
+---------------------------------------------------------------------------------- 
 entity PdmDes is
    generic(
       C_NR_OF_BITS : integer := 16;
@@ -52,14 +25,16 @@ entity PdmDes is
       -- PDM
       pdm_m_clk_o : out std_logic; -- Output M_CLK signal to the microphone
       pdm_m_data_i : in std_logic; -- Input PDM data from the microphone
-      pdm_lrsel_o : out std_logic -- Set to '0', therefore data is read on the positive edge
+      pdm_lrsel_o : out std_logic -- Set to '0' -> data is read on the positive edge
    );
 end PdmDes;
+
+
 
 architecture Behavioral of PdmDes is
 
 ------------------------------------------------------------------------
--- Signal Declarations
+-- Signals
 ------------------------------------------------------------------------
 -- Divider to create pdm_m_clk_0
 signal cnt_clk : integer range 0 to 127 := 0;
@@ -74,15 +49,11 @@ signal pdm_tmp : std_logic_vector((C_NR_OF_BITS - 1) downto 0);
 -- Count the number of bits
 signal cnt_bits : integer range 0 to 31 := 0;
 
--- To create a pdm_clk_rising impulse of two clock period length
--- This signal will be registered in the MicDisplay module on the 108MHz pxlclk
-signal pdm_clk_rising_reg : std_logic_vector (2 downto 0);
-
 signal en_int : std_logic;
 signal done_int : std_logic;
 
 ------------------------------------------------------------------------
--- Module Implementation
+-- Begin
 ------------------------------------------------------------------------
 begin
 
@@ -97,10 +68,10 @@ begin
       end if;
    end process SYNC;
 
-------------------------------------------------------------------------
--- Deserializer
-------------------------------------------------------------------------
--- Sample input serial data process
+   ------------------------------------------------------------------------
+   -- Deserializer
+   ------------------------------------------------------------------------
+   -- Sample input serial data process
    SHFT_IN: process(clk_i) 
    begin 
       if rising_edge(clk_i) then
@@ -110,8 +81,7 @@ begin
       end if;
    end process SHFT_IN;
    
-
--- Count the number of sampled bits
+   -- Count the number of sampled bits
    CNT: process(clk_i) begin
       if rising_edge(clk_i) then
          if en_int = '0' then
@@ -128,7 +98,7 @@ begin
       end if;
    end process CNT;
 
--- Generate the done signal
+   -- Generate the done signal
    process(clk_i) 
    begin
       if rising_edge(clk_i) then
@@ -147,9 +117,7 @@ begin
    
    done_o <= done_int;
 
--- Generate PDM Clock, that runs independent from the enable signal, therefore
--- the onboard microphone will always send data, that is displayed on the VGA screen
--- using the MicDisplay component
+   -- Generate PDM Clock
    CLK_CNT: process(clk_i)
    begin
       if rising_edge(clk_i) then

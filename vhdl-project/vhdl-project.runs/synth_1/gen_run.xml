@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1701252494" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/Nexys4DdrUserDemo.dcp">
-  <File Type="VDS-TIMINGSUMMARY" Name="Nexys4DdrUserDemo_timing_summary_synth.rpt"/>
-  <File Type="RDS-DCP" Name="Nexys4DdrUserDemo.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="Nexys4DdrUserDemo_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="Nexys4DdrUserDemo_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="Nexys4DdrUserDemo_drc_synth.rpt"/>
-  <File Type="RDS-RDS" Name="Nexys4DdrUserDemo.vds"/>
-  <File Type="REPORTS-TCL" Name="Nexys4DdrUserDemo_reports.tcl"/>
-  <File Type="VDS-TIMING-PB" Name="Nexys4DdrUserDemo_timing_summary_synth.pb"/>
-  <File Type="PA-TCL" Name="Nexys4DdrUserDemo.tcl"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1703685726" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/Nexys4DdrUserDemo.dcp">
+  <File Type="VDS-TIMINGSUMMARY" Name="Main_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="Main.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="Main_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="Main_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="Main_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="Main.vds"/>
+  <File Type="REPORTS-TCL" Name="Main_reports.tcl"/>
+  <File Type="VDS-TIMING-PB" Name="Main_timing_summary_synth.pb"/>
+  <File Type="PA-TCL" Name="Main.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/ip/ddr/ddr.xci">
@@ -29,10 +29,8 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/hdl/AudioDemo.vhd">
+    <File Path="$PSRCDIR/sources_1/imports/hdl/AudioCtrl.vhd">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../Nexys-4-DDR-OOB/src/hdl/AudioDemo.vhd"/>
-        <Attr Name="ImportTime" Val="1700929654"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
@@ -93,10 +91,8 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/hdl/sSegDemo.vhd">
+    <File Path="$PSRCDIR/sources_1/imports/hdl/sSegCtrl.vhd">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../Nexys-4-DDR-OOB/src/hdl/sSegDemo.vhd"/>
-        <Attr Name="ImportTime" Val="1700750307"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
@@ -109,17 +105,8 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/hdl/Nexys4DdrUserDemo.vhd">
+    <File Path="$PSRCDIR/sources_1/imports/hdl/Main.vhd">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../Nexys-4-DDR-OOB/src/hdl/Nexys4DdrUserDemo.vhd"/>
-        <Attr Name="ImportTime" Val="1700929584"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/debouncer.vhd">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
@@ -132,18 +119,9 @@
         <Attr Name="ScopedToCell" Val="ddr"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/UART-Transmision/UART_RX_CNTRL.vhd">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="ImportPath" Val="$PPRDIR/../UART_Bluetooth_test/UART_test.srcs/sources_1/imports/UART-Transmision/UART_RX_CNTRL.vhd"/>
-        <Attr Name="ImportTime" Val="1700935045"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="Nexys4DdrUserDemo"/>
+      <Option Name="TopModule" Val="Main"/>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>
   </FileSet>
